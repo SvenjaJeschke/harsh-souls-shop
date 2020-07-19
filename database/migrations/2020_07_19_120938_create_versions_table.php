@@ -15,12 +15,12 @@ class CreateVersionsTable extends Migration
     {
         Schema::create('versions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->unsigned()->constrained()->cascadeOnDelete();
             $table->string('display_name');
             $table->string('size')->nullable();
             $table->string('color')->nullable();
             $table->string('color_code')->nullable();
-            $table->decimal('price', null, 2)->nullable();
+            $table->decimal('price', 8, 2)->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

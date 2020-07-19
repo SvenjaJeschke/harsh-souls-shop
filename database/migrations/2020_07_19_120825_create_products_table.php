@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('display_name');
             $table->text('description')->nullable();
-            $table->decimal('price', null, 2)->nullable();
+            $table->decimal('price', 8, 2)->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
