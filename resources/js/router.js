@@ -5,9 +5,20 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        name: 'home',
         path: '/',
+        redirect: {name: 'home'}
+    },
+    {
+        name: 'home',
+        path: '/home',
+        component: () => import('./views/Home'),
         description: 'campaigns, discounts and new products'
+    },
+    {
+        name: 'products-list',
+        path: '/products/:category/:sort?/:color?/:pricerange?/:search?',
+        component: () => import('./views/ProductsList'),
+        description: 'products overview with search, filter and sorting options'
     }
 ];
 
