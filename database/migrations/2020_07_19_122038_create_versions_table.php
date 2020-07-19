@@ -20,7 +20,7 @@ class CreateVersionsTable extends Migration
             $table->string('size')->nullable();
             $table->string('color')->nullable();
             $table->string('color_code')->nullable();
-            $table->float('price')->nullable();
+            $table->decimal('price', null, 2)->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

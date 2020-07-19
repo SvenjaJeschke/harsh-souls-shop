@@ -22,6 +22,7 @@ class CreateImagesTable extends Migration
             $table->bigInteger('file_size');
             $table->string('file_extension');
             $table->boolean('is_cover')->default(false);
+            $table->boolean('is_visible')->default(true);
             $table->timestamps();
         });
     }
