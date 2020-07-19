@@ -60,6 +60,6 @@ class Category extends Model
      * @return Builder[]|Collection
      */
     public static function withAllChildren() {
-        return parent::with('childrenRecursive')->whereNull('parent_id')->get();
+        return static::with('childrenRecursive')->whereNull('parent_id')->get();
     }
 }

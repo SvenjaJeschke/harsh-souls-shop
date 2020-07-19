@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db9dd5d7-4cc4-4383-b447-1d09d05aad50" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/harsh-souls-shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/harsh-souls-shop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Discount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DiscountController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_185602_create_discounts_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ProductFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ProductFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/ProductSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ProductSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/NavigationHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/NavigationHeader.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +179,7 @@
       <option name="presentableId" value="Default" />
       <updated>1595153682269</updated>
       <workItem from="1595153683620" duration="28022000" />
-      <workItem from="1595184139601" duration="712000" />
+      <workItem from="1595184139601" duration="1049000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1595157081661</created>
@@ -220,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595180027240</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="webpack bug solved">
+      <created>1595184936354</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595184936354</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,7 +245,8 @@
     <MESSAGE value="created migrations" />
     <MESSAGE value="models, relations and migrations" />
     <MESSAGE value="category navigation with nested categories" />
-    <option name="LAST_COMMIT_MESSAGE" value="category navigation with nested categories" />
+    <MESSAGE value="webpack bug solved" />
+    <option name="LAST_COMMIT_MESSAGE" value="webpack bug solved" />
   </component>
   <component name="WindowStateProjectService">
     <state x="650" y="384" key="#Composer" timestamp="1595153724146">
@@ -250,18 +261,22 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="570" y="260" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595166598176" />
-    <state x="465" y="82" key="CommitChangelistDialog2" timestamp="1595180026259">
+    <state x="465" y="82" key="CommitChangelistDialog2" timestamp="1595184935643">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="465" y="82" key="CommitChangelistDialog2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595180026259" />
+    <state x="465" y="82" key="CommitChangelistDialog2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595184935643" />
     <state x="509" y="283" key="EditFileWatcherDialog" timestamp="1595156483310">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="509" y="283" key="EditFileWatcherDialog/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595156483310" />
-    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1595180029865">
+    <state x="657" y="207" key="RollbackChangesDialog" timestamp="1595184735022">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="238" key="Vcs.Push.Dialog.v2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595180029865" />
+    <state x="657" y="207" key="RollbackChangesDialog/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595184735022" />
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1595184937508">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595184937508" />
     <state x="609" y="313" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1595167562085">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
