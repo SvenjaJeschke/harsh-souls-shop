@@ -1,7 +1,6 @@
 <template>
     <v-app-bar
-        fixed
-        prominent
+        extended
         app
         shrink-on-scroll
     >
