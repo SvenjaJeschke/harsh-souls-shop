@@ -7,6 +7,15 @@
         <v-toolbar-title>
             Harsh Souls Shop
         </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-tooltip left>
+            <template v-slot:activator="{on}">
+                <v-btn icon v-on="on" :to="{name: 'login'}">
+                    <v-icon>mdi-login</v-icon>
+                </v-btn>
+            </template>
+            Admin Login
+        </v-tooltip>
         <template v-slot:extension>
             <v-tabs
                 v-if="tabs.length"

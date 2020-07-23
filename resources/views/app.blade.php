@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{ env('APP_NAME') }}</title>
-    <meta name="csrf-token" value="{{ csrf_token() }}"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
 </head>

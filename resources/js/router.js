@@ -19,6 +19,12 @@ const routes = [
         path: '/products/:category/:sort?/:color?/:pricerange?/:search?',
         component: () => import('./views/ProductsList'),
         description: 'products overview with search, filter and sorting options'
+    },
+    {
+        name: 'login',
+        path: '/login',
+        component: () => import('./views/LoginForm'),
+        description: 'login for the administration area'
     }
 ];
 
