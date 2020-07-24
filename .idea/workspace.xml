@@ -19,27 +19,34 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db9dd5d7-4cc4-4383-b447-1d09d05aad50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/AlertSnackbar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/views/LoginForm.vue" afterDir="false" />
+    <list default="true" id="db9dd5d7-4cc4-4383-b447-1d09d05aad50" name="Default Changelist" comment="WIP, login issues">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ConfirmPasswordController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/harsh-souls-shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/harsh-souls-shop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Application.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Application.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/NavigationHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/NavigationHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/vuetify.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/vuetify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +66,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -187,7 +199,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -210,7 +222,9 @@
       <updated>1595153682269</updated>
       <workItem from="1595153683620" duration="28022000" />
       <workItem from="1595184139601" duration="10759000" />
-      <workItem from="1595487841897" duration="8880000" />
+      <workItem from="1595487841897" duration="9400000" />
+      <workItem from="1595576393715" duration="59000" />
+      <workItem from="1595581873029" duration="3875000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1595157081661</created>
@@ -268,7 +282,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595185208777</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="WIP, login issues">
+      <created>1595514247169</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1595514247169</updated>
+    </task>
+    <task id="LOCAL-00010" summary="WIP, login issues">
+      <created>1595600859285</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1595600859285</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,6 +312,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -296,7 +325,8 @@
     <MESSAGE value="category navigation with nested categories" />
     <MESSAGE value="webpack bug solved" />
     <MESSAGE value="product factory and discounts" />
-    <option name="LAST_COMMIT_MESSAGE" value="product factory and discounts" />
+    <MESSAGE value="WIP, login issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP, login issues" />
   </component>
   <component name="WindowStateProjectService">
     <state x="650" y="384" key="#Composer" timestamp="1595153724146">
@@ -311,9 +341,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="570" y="260" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595166598176" />
-    <state x="465" y="82" key="CommitChangelistDialog2" timestamp="1595185208036">
+    <state x="465" y="82" key="CommitChangelistDialog2" timestamp="1595600858678">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
+    <state x="465" y="82" key="CommitChangelistDialog2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595600858678" />
     <state x="465" y="82" key="CommitChangelistDialog2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595185208036" />
     <state x="240" y="120" width="1200" height="770" key="DiffContextDialog" timestamp="1595489249498">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -336,18 +367,18 @@
     </state>
     <state x="657" y="207" key="RollbackChangesDialog/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595489131988" />
     <state x="657" y="207" key="RollbackChangesDialog/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595184735022" />
-    <state x="341" y="150" key="SettingsEditor" timestamp="1595493364800">
+    <state x="341" y="150" key="SettingsEditor" timestamp="1595600835867">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="341" y="150" key="SettingsEditor/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595493364800" />
+    <state x="341" y="150" key="SettingsEditor/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595600835867" />
     <state x="687" y="418" key="VCS.ChangelistChooser" timestamp="1595488949115">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="687" y="418" key="VCS.ChangelistChooser/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595488949115" />
-    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1595514168813">
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1595600861887">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="238" key="Vcs.Push.Dialog.v2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595514168813" />
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595600861887" />
     <state x="432" y="238" key="Vcs.Push.Dialog.v2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595185210410" />
     <state x="609" y="313" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1595167562085">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -386,10 +417,14 @@
     </state>
     <state x="547" y="104" width="585" height="801" key="find.popup/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595495799843" />
     <state x="547" y="104" width="585" height="801" key="find.popup/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595182462945" />
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1595495104174">
+    <state x="614" y="218" key="git4idea.branch.GitSmartOperationDialog" timestamp="1595601184884">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595495104174" />
+    <state x="614" y="218" key="git4idea.branch.GitSmartOperationDialog/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595601184884" />
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1595600608622">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595600608622" />
     <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595181212195" />
   </component>
 </project>
