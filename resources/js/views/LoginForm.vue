@@ -51,7 +51,11 @@ export default {
         login() {
             this.isLoading = true;
             this.errors = [];
-            this.$http.post('/login', this.input)
+            this.$http.post('/login', this.input, {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
                 .then(response => {
                     this.$store.dispatch('getUser');
                     this.$root.$emit('open-alert-snackbar', response.data.message);

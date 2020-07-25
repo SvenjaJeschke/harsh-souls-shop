@@ -5,12 +5,12 @@ import App from './Application';
 import vuetify from './vuetify';
 import store from './store';
 
-Vue.prototype.$http = axios;
-
 axios.defaults.headers.common = {
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     'X-Requested-With': 'XMLHttpRequest'
 };
+
+Vue.prototype.$http = axios;
 
 const app = new Vue({
     el: '#app',
