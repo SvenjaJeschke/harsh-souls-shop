@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+//Auth::routes();
+
+Route::post('/login', 'Auth\LoginController@login');
 
 Route::view('/{any}', 'app')->where('any', '.*');
 
