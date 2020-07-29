@@ -7,7 +7,9 @@ import store from './store';
 
 axios.defaults.headers.common = {
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
 };
 
 Vue.prototype.$http = axios;

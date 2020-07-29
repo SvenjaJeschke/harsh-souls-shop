@@ -21,5 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/categories', 'CategoryController@index');
 
 Route::get('/test', function () {
-    return response()->json(['message' => 'Test 123']);
+    return response()->json(['message' => 'Test']);
 });
