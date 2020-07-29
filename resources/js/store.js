@@ -7,7 +7,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         auth: localStorage.getItem('auth') === 'true',
-        user: localStorage.getItem('user') || null
+        user: JSON.parse(localStorage.getItem('user')) || null
     },
     mutations: {
         SET_AUTH(state) {
@@ -20,7 +20,7 @@ const store = new Vuex.Store({
         },
         SET_USER(state, user) {
             state.user = user;
-            localStorage.setItem('user', user);
+            localStorage.setItem('user', JSON.stringify(user));
         },
         UNSET_USER(state) {
             state.user = null;
@@ -30,8 +30,8 @@ const store = new Vuex.Store({
     actions: {
         getUser({commit}) {
             axios.get('/api/user').then(response => {
-                commit('SET_AUTH');
-                commit('SET_USER', response.data);
+                    commit('SET_AUTH');
+                    commit('SET_USER', response.data);
                 })
                 .catch(error => {
                     commit('UNSET_AUTH');

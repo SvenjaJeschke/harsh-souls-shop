@@ -14,14 +14,20 @@ axios.defaults.headers.common = {
 
 Vue.prototype.$http = axios;
 
-const app = new Vue({
-    el: '#app',
-    router,
-    vuetify,
-    store,
-    components: {
-        'app': App
-    }
-});
+let app;
+
+store.dispatch('getUser').finally(() => mountApp());
+
+function mountApp() {
+    app = new Vue({
+        el: '#app',
+        router,
+        vuetify,
+        store,
+        components: {
+            'app': App
+        }
+    });
+}
 
 export default app;

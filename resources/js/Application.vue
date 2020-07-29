@@ -15,9 +15,6 @@ export default {
     components: {
         'navigation-header': NavigationHeader,
         'alert-snackbar': AlertSnackbar
-    },
-    created() {
-        this.$store.dispatch('getUser');
     }
 }
 </script>

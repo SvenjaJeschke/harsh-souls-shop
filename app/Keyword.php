@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Tag extends Model
+class Keyword extends Model
 {
     protected $fillable = [
         'name'
