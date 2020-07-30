@@ -4,6 +4,7 @@ import router from './router';
 import App from './Application';
 import vuetify from './vuetify';
 import store from './store';
+import Copy from './mixins/Copy';
 
 axios.defaults.headers.common = {
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -13,6 +14,8 @@ axios.defaults.headers.common = {
 };
 
 Vue.prototype.$http = axios;
+
+Vue.mixin(Copy);
 
 let app;
 

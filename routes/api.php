@@ -18,8 +18,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/categories', 'CategoryController@index');
+Route::group(['middleware' => ['auth:api']], static function() {
+    Route::get('/products', 'ProductController@index');
+    Route::get('/product/{product}', 'ProductController@show');
+    Route::put('/product/{product}', 'ProductController@update');
+    Route::get('/product/{product}/cover-image', 'ProductController@getCoverImage');
+    Route::put('/product/cover-image/{image}', 'ProductController@setCoverImage');
+    Route::put('/product/cover-image/{image}/unset', 'ProductController@unsetCoverImage');
 
-Route::get('/test', function () {
-    return response()->json(['message' => 'Test']);
+    Route::post('/images/{product}', 'ImageController@store');
+    Route::delete('/images/{image}', 'ImageController@destroy');
+    Route::get('/images/{image}/download', 'ImageController@show');
 });
+
+Route::get('/categories', 'CategoryController@index');

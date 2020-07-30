@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Image extends Model
 {
     protected $fillable = [
-        'product_id', 'version_id', 'original_name', 'path', 'file_size', 'file_extension', 'is_cover', 'is_visible'
+        'product_id', 'version_id', 'name', 'storage_url', 'original_name', 'path', 'file_size', 'file_extension', 'is_cover', 'is_visible'
     ];
 
     public $timestamps = [
@@ -18,6 +18,8 @@ class Image extends Model
     protected $casts = [
         'product_id' => 'integer',
         'version_id' => 'integer',
+        'storage_url' => 'string',
+        'name' => 'string',
         'original_name' => 'string',
         'path' => 'string',
         'file_size' => 'integer',

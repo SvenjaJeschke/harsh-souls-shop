@@ -6,13 +6,21 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        auth: localStorage.getItem('auth') === 'true',
-        user: JSON.parse(localStorage.getItem('user')) || null
+        auth: JSON.parse(localStorage.getItem('auth')),
+        user: JSON.parse(localStorage.getItem('user'))
+    },
+    getters: {
+        checkAuth(state) {
+            return state.auth;
+        },
+        user(state) {
+            return state.user;
+        }
     },
     mutations: {
         SET_AUTH(state) {
             state.auth = true;
-            localStorage.setItem('auth', 'true');
+            localStorage.setItem('auth', JSON.stringify(true));
         },
         UNSET_AUTH(state) {
             state.auth = false;

@@ -17,6 +17,8 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->foreignId('version_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->string('storage_url');
+            $table->string('name');
             $table->string('original_name');
             $table->string('path');
             $table->bigInteger('file_size');

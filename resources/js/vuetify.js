@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import 'vuetify/lib';
 import '@mdi/font/css/materialdesignicons.css'
+import '@fortawesome/fontawesome-free/css/all.css';
 
 Vue.use(Vuetify);
 
@@ -17,7 +18,7 @@ const options = {
         }
     },
     icons: {
-        iconfont: 'mdi'
+        iconfont: 'fa' || 'mdi'
     }
 };
 

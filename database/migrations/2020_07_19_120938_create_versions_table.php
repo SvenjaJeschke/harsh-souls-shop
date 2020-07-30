@@ -15,7 +15,7 @@ class CreateVersionsTable extends Migration
     {
         Schema::create('versions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->unsigned()->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id');
             $table->string('display_name');
             $table->string('size')->nullable();
             $table->string('color')->nullable();

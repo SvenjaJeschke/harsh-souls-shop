@@ -14,7 +14,7 @@ class CreateOrderablesTable extends Migration
     public function up()
     {
         Schema::create('orderables', function (Blueprint $table) {
-            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('model_id');
             $table->string('model_type');
         });

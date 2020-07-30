@@ -25,6 +25,31 @@ const routes = [
         path: '/login',
         component: () => import('./views/LoginForm'),
         description: 'login for the administration area'
+    },
+    {
+        name: 'product-management',
+        path: '/admin/product-management',
+        component: () => import('./views/admin/ProductManagement'),
+        description: 'overview and management of all products'
+    },
+    {
+        name: 'category-management',
+        path: '/admin/category-management',
+        component: () => import('./views/admin/CategoryManagement'),
+        description: 'overview and management of all categories'
+    },
+    {
+        name: 'orders',
+        path: '/admin/orders',
+        component: () => import('./views/admin/Orders'),
+        description: 'overview of all orders'
+    },
+    {
+        name: 'edit-product',
+        path: '/admin/product/:id/edit',
+        component: () => import('./views/admin/EditProduct'),
+        description: 'page with all product details and edit functionality',
+        props: true
     }
 ];
 

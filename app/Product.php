@@ -9,15 +9,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'display_name', 'description', 'price', 'is_active'
     ];
 
     public $timestamps = [
-        'created_at', 'updated_at'
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     protected $casts = [
@@ -85,7 +88,7 @@ class Product extends Model
     /**
      * @return Image
      */
-    public function coverImage(): Image
+    public function coverImage(): ?Image
     {
         return $this->images->where('is_cover', '=', true)->first();
     }

@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'LoginForm',
     data: () => ({
@@ -47,6 +49,14 @@ export default {
         isLoading: false,
         errors: []
     }),
+    computed: {
+        ...mapGetters(['checkAuth'])
+    },
+    mounted() {
+        if (this.checkAuth) {
+            this.$router.push({name: 'home'});
+        }
+    },
     methods: {
         login() {
             this.isLoading = true;
@@ -59,7 +69,7 @@ export default {
                 .then(response => {
                     this.$store.dispatch('getUser');
                     this.$root.$emit('open-alert-snackbar', response.data.message);
-                    this.$router.push({name: 'home'});
+                    location.reload();
                 })
                 .catch(error => {
                     this.$root.$emit('open-alert-snackbar', error.response.data.message);
