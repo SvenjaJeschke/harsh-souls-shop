@@ -17,7 +17,6 @@ class CreateVersionsTable extends Migration
             $table->id();
             $table->foreignId('product_id');
             $table->string('display_name');
-            $table->string('size')->nullable();
             $table->string('color')->nullable();
             $table->string('color_code')->nullable();
             $table->decimal('price', 8, 2)->nullable();

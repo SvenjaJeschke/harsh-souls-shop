@@ -40,15 +40,17 @@ import {mapGetters} from 'vuex';
 
 export default {
     name: 'LoginForm',
-    data: () => ({
-        input: {
-            email: null,
-            password: null
-        },
-        showPassword: false,
-        isLoading: false,
-        errors: []
-    }),
+    data() {
+        return {
+            input: {
+                email: null,
+                password: null
+            },
+            showPassword: false,
+            isLoading: false,
+            errors: []
+        };
+    },
     computed: {
         ...mapGetters(['checkAuth'])
     },

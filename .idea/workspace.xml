@@ -20,22 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db9dd5d7-4cc4-4383-b447-1d09d05aad50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/CreateKeywordRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/CreateVersionRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateVersionRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Size.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_31_074151_create_sizes_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/CreateVersionDialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/EditVersionDialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/VersionCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/KeywordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/KeywordController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Keyword.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Keyword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VersionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VersionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Version.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Version.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_120938_create_versions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_120938_create_versions_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AlertSnackbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AlertSnackbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/Images.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Images.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/Keywords.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Keywords.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/ProductDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/ProductDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/ImageCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/ImageCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/UploadDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/UploadDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/NavigationHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/NavigationHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/Versions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Versions.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/LoginForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/admin/EditProduct.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/admin/EditProduct.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/admin/ProductManagement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/admin/ProductManagement.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -233,7 +236,7 @@
       <workItem from="1595766802676" duration="1253000" />
       <workItem from="1596030466146" duration="5910000" />
       <workItem from="1596087346364" duration="38867000" />
-      <workItem from="1596170908709" duration="6237000" />
+      <workItem from="1596170908709" duration="20405000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1595157081661</created>
@@ -340,7 +343,21 @@
       <option name="project" value="LOCAL" />
       <updated>1596137925862</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="product keywords tab">
+      <created>1596178803899</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1596178803899</updated>
+    </task>
+    <task id="LOCAL-00017" summary="public assets">
+      <created>1596178869620</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1596178869620</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +391,9 @@
     <MESSAGE value="added passport" />
     <MESSAGE value="store user in localstorage &amp; rename Tag model to Keyword" />
     <MESSAGE value="product management, product detail edit and product images WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="product management, product detail edit and product images WIP" />
+    <MESSAGE value="product keywords tab" />
+    <MESSAGE value="public assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="public assets" />
   </component>
   <component name="WindowStateProjectService">
     <state x="650" y="384" key="#Composer" timestamp="1595153724146">
@@ -394,10 +413,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="570" y="260" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595166598176" />
-    <state x="465" y="82" key="CommitChangelistDialog2" timestamp="1596137924663">
+    <state x="465" y="82" key="CommitChangelistDialog2" timestamp="1596178869165">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="465" y="82" key="CommitChangelistDialog2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596137924663" />
+    <state x="465" y="82" key="CommitChangelistDialog2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596178869165" />
     <state x="465" y="82" key="CommitChangelistDialog2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595185208036" />
     <state x="240" y="120" width="1200" height="770" key="DiffContextDialog" timestamp="1595601544985">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -428,19 +447,23 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="687" y="418" key="VCS.ChangelistChooser/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595488949115" />
-    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1596137928356">
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1596178871071">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="238" key="Vcs.Push.Dialog.v2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596137928356" />
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596178871071" />
     <state x="432" y="238" key="Vcs.Push.Dialog.v2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595185210410" />
+    <state x="657" y="419" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596189734565">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="657" y="419" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596189734565" />
     <state x="609" y="313" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1595167562085">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="609" y="313" key="com.jetbrains.php.test.PhpNewTestDialog/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595167562085" />
-    <state x="-1271" y="143" width="1287" height="947" key="dock-window-1" timestamp="1596121729572">
+    <state x="-1262" y="143" width="1278" height="947" key="dock-window-1" timestamp="1596189429734">
       <screen x="-1440" y="143" width="1440" height="860" />
     </state>
-    <state x="-1271" y="143" width="1287" height="947" key="dock-window-1/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596121729572" />
+    <state x="-1262" y="143" width="1278" height="947" key="dock-window-1/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596189429734" />
     <state x="-1429" y="143" width="1244" height="947" key="dock-window-1/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595164875357" />
     <state x="-1382" y="143" width="1244" height="947" key="dock-window-2" timestamp="1595166100570">
       <screen x="-1440" y="143" width="1440" height="860" />
@@ -475,10 +498,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="614" y="218" key="git4idea.branch.GitSmartOperationDialog/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595601184884" />
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1596135002258">
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1596183334178">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596135002258" />
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596183334178" />
     <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595181212195" />
   </component>
 </project>

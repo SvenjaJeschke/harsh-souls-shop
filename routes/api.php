@@ -33,6 +33,11 @@ Route::group(['middleware' => ['auth:api']], static function() {
     Route::get('/keywords/product/{product}', 'KeywordController@index');
     Route::post('/keywords/product/{product}', 'KeywordController@store');
     Route::delete('/keywords/{keyword}/product/{product}', 'KeywordController@destroy');
+
+    Route::get('/versions/product/{product}', 'VersionController@index');
+    Route::post('/version/product/{product}', 'VersionController@store');
+    Route::delete('/version/{version}', 'VersionController@destroy');
+    Route::put('/version/{version}', 'VersionController@update');
 });
 
 Route::get('/categories', 'CategoryController@index');

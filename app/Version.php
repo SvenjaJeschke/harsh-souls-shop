@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Version extends Model
 {
     protected $fillable = [
-        'product_id', 'display_name', 'size', 'color', 'color_code', 'price', 'is_active'
+        'product_id', 'display_name', 'color', 'color_code', 'price', 'is_active'
     ];
 
     public $timestamps = [
@@ -20,7 +20,6 @@ class Version extends Model
     protected $casts = [
         'product_id' => 'integer',
         'display_name' => 'string',
-        'size' => 'string',
         'color' => 'string',
         'color_code' => 'string',
         'price' => 'decimal:2',

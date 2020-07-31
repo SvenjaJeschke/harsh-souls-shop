@@ -21,7 +21,7 @@
                         v-on="on"
                         :to="{name: 'login'}"
                     >
-                        <v-icon small>mdi-login</v-icon>
+                        <v-icon>mdi-login</v-icon>
                     </v-btn>
                 </template>
                 Admin Login

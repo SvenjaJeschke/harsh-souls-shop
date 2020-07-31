@@ -26,7 +26,7 @@
                     <keywords :product="product" />
                 </v-tab-item>
                 <v-tab-item value="versions">
-                    <versions />
+                    <versions :product="product" @versions-changed="getProduct" />
                 </v-tab-item>
                 <v-tab-item value="categories">
                     <categories />

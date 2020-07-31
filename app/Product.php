@@ -79,16 +79,19 @@ class Product extends Model
     }
 
     /**
+     * @return HasMany
+     */
+    public function sizes(): HasMany
+    {
+        return $this->hasMany(Size::class);
+    }
+
+    /**
      * @return float|int
      */
     public function calculateDiscountPrice() {
         return $this->price / 100 * $this->discount->discount_percent;
     }
-
-    /*public function coverImage(): ?Image
-    {
-        return $this->images->where('is_cover', '=', true)->first();
-    }*/
 
     /**
      * @return HasOne
