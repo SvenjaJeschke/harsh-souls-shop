@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth:api']], static function() {
     Route::post('/images/{product}', 'ImageController@store');
     Route::delete('/images/{image}', 'ImageController@destroy');
     Route::get('/images/{image}/download', 'ImageController@show');
+
+    Route::get('/keywords/product/{product}', 'KeywordController@index');
+    Route::post('/keywords/product/{product}', 'KeywordController@store');
+    Route::delete('/keywords/{keyword}/product/{product}', 'KeywordController@destroy');
 });
 
 Route::get('/categories', 'CategoryController@index');

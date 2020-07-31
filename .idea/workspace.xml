@@ -20,50 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db9dd5d7-4cc4-4383-b447-1d09d05aad50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateProductRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/AdminNavigationDrawer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/ConfirmModal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/NavigationCategoryTabs.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Categories.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Discount.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Images.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Keywords.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/ProductDetails.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Versions.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/ImageCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/UploadDialog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/productActionButtons/DeleteProductButton.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/productActionButtons/EditProductButton.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/mixins/Copy.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/views/admin/CategoryManagement.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/views/admin/EditProduct.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/views/admin/Orders.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/views/admin/ProductManagement.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/CreateKeywordRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/KeywordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/KeywordController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Keyword.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Keyword.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_120825_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_120825_create_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_120938_create_versions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_120938_create_versions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_121109_create_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_121109_create_images_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_130826_create_products_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_130826_create_keyword_product_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_132847_create_categories_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_132847_create_category_product_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_134537_create_orderables_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_134537_create_orderables_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Application.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Application.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/NavigationHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/NavigationHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AlertSnackbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AlertSnackbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/Images.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Images.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/Keywords.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/Keywords.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/ProductDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/ProductDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/ImageCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/ImageCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/UploadDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editProductTabs/parts/UploadDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/LoginForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/vuetify.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/vuetify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/admin/EditProduct.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/admin/EditProduct.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/admin/ProductManagement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/admin/ProductManagement.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +232,8 @@
       <workItem from="1595663084424" duration="6547000" />
       <workItem from="1595766802676" duration="1253000" />
       <workItem from="1596030466146" duration="5910000" />
-      <workItem from="1596087346364" duration="38656000" />
+      <workItem from="1596087346364" duration="38867000" />
+      <workItem from="1596170908709" duration="6237000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1595157081661</created>
@@ -359,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596039549563</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="product management, product detail edit and product images WIP">
+      <created>1596137925862</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1596137925862</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,7 +373,8 @@
     <MESSAGE value="WIP" />
     <MESSAGE value="added passport" />
     <MESSAGE value="store user in localstorage &amp; rename Tag model to Keyword" />
-    <option name="LAST_COMMIT_MESSAGE" value="store user in localstorage &amp; rename Tag model to Keyword" />
+    <MESSAGE value="product management, product detail edit and product images WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="product management, product detail edit and product images WIP" />
   </component>
   <component name="WindowStateProjectService">
     <state x="650" y="384" key="#Composer" timestamp="1595153724146">
@@ -412,10 +394,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="570" y="260" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595166598176" />
-    <state x="465" y="82" key="CommitChangelistDialog2" timestamp="1596039548771">
+    <state x="465" y="82" key="CommitChangelistDialog2" timestamp="1596137924663">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="465" y="82" key="CommitChangelistDialog2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596039548771" />
+    <state x="465" y="82" key="CommitChangelistDialog2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596137924663" />
     <state x="465" y="82" key="CommitChangelistDialog2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595185208036" />
     <state x="240" y="120" width="1200" height="770" key="DiffContextDialog" timestamp="1595601544985">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -446,10 +428,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="687" y="418" key="VCS.ChangelistChooser/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595488949115" />
-    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1596039551504">
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1596137928356">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="238" key="Vcs.Push.Dialog.v2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596039551504" />
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596137928356" />
     <state x="432" y="238" key="Vcs.Push.Dialog.v2/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595185210410" />
     <state x="609" y="313" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1595167562085">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -484,10 +466,10 @@
       <screen x="-1440" y="143" width="1440" height="860" />
     </state>
     <state x="-1228" y="143" width="1244" height="947" key="dock-window-7/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595180673603" />
-    <state x="547" y="104" width="585" height="801" key="find.popup" timestamp="1595495799843">
+    <state x="547" y="104" width="585" height="801" key="find.popup" timestamp="1596175174908">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="547" y="104" width="585" height="801" key="find.popup/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1595495799843" />
+    <state x="547" y="104" width="585" height="801" key="find.popup/-1440.143.1440.860/0.0.1680.1010@0.0.1680.1010" timestamp="1596175174908" />
     <state x="547" y="104" width="585" height="801" key="find.popup/0.0.1680.1010/-1440.143.1440.860@0.0.1680.1010" timestamp="1595182462945" />
     <state x="614" y="218" key="git4idea.branch.GitSmartOperationDialog" timestamp="1595601184884">
       <screen x="0" y="0" width="1680" height="1010" />

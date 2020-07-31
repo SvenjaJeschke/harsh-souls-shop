@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index(Request $request): LengthAwarePaginator
     {
-        $query = Product::with('images');
+        $query = Product::with(['images', 'coverImage']);
 
         if ($request->filled('sortBy')) {
             if ($request->sortDesc[0] === 'true') {
@@ -69,11 +69,11 @@ class ProductController extends Controller
 
     /**
      * @param Product $product
-     * @return Image|null
+     * @return mixed
      */
-    public function getCoverImage(Product $product): ?Image
+    public function getCoverImage(Product $product)
     {
-        return $product->coverImage();
+        return $product->coverImage;
     }
 
     /**

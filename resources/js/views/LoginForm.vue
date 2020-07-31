@@ -68,11 +68,11 @@ export default {
             })
                 .then(response => {
                     this.$store.dispatch('getUser');
-                    this.$root.$emit('open-alert-snackbar', response.data.message);
+                    this.$root.$emit('snackbar', response.data.message);
                     location.reload();
                 })
                 .catch(error => {
-                    this.$root.$emit('open-alert-snackbar', error.response.data.message);
+                    this.$root.$emit('snackbar', error.response.data.message);
                     this.errors = error.response.data.errors;
                 })
                 .finally(() => {

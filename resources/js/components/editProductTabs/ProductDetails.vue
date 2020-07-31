@@ -51,13 +51,19 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-                text
-                :disabled="!hasChanges"
-                @click="revertChanges"
-            >
-                Revert changes
-            </v-btn>
+            <v-tooltip top>
+                <template v-slot:activator="{on}">
+                    <v-btn
+                        text
+                        :disabled="!hasChanges"
+                        v-on="on"
+                        @click="revertChanges"
+                    >
+                        Revert changes
+                    </v-btn>
+                </template>
+                You can only revert changes that are not saved yet.
+            </v-tooltip>
             <v-btn
                 text
                 color="secondary"
@@ -134,10 +140,11 @@ export default {
             this.$http.put(`/api/product/${this.product.id}`, input)
                 .then(response => {
                     this.errorMessages = [];
-                    this.$root.$emit('open-alert-snackbar', response.data.message);
+                    this.$root.$emit('snackbar', response.data.message);
+                    this.$emit('product-changed');
                 })
                 .catch(error => {
-                    this.$root.$emit('open-alert-snackbar', error.response.data.message);
+                    this.$root.$emit('snackbar', error.response.data.message);
                     this.errorMessages = error.response.data.errors;
                 })
                 .finally(() => {

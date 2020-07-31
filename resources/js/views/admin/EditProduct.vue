@@ -17,13 +17,13 @@
         <v-card-text>
             <v-tabs-items v-model="activeTab">
                 <v-tab-item value="product-details">
-                    <product-details :product="product" />
+                    <product-details :product="product" @product-changed="getProduct" />
                 </v-tab-item>
                 <v-tab-item value="images">
                     <images :product="product" @files-changed="getProduct" />
                 </v-tab-item>
                 <v-tab-item value="keywords">
-                    <keywords />
+                    <keywords :product="product" />
                 </v-tab-item>
                 <v-tab-item value="versions">
                     <versions />

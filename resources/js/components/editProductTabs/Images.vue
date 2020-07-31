@@ -1,18 +1,22 @@
 <template>
     <v-card flat>
-        <v-card-title v-if="coverImage">
+        <v-card-title>
             Product Cover Image
         </v-card-title>
-        <v-card-subtitle v-if="coverImage">
+        <v-card-subtitle>
             This image will always be shown as the first image of the product.
         </v-card-subtitle>
-        <v-divider v-if="coverImage"></v-divider>
-        <v-card-text v-if="coverImage">
+        <v-divider></v-divider>
+        <v-card-text>
             <image-card
+                v-if="coverImage"
                 :image="coverImage"
                 is-cover-image
                 @files-changed="imagesChanged"
             />
+            <span v-else>
+                This product doesn't have a cover image yet.
+            </span>
         </v-card-text>
         <v-card-title>
             Product images

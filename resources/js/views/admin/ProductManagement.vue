@@ -24,7 +24,8 @@
             >
                 <template v-slot:item.coverImage="{item}">
                     <v-img
-                        :src="coverImage(item)"
+                        :src="item.cover_image ? item.cover_image.storage_url : null"
+                        lazy-src="./assets/placeholder.png"
                         height="50"
                         width="100"
                     ></v-img>
@@ -104,12 +105,6 @@ export default {
                 .finally(() => {
                     this.isLoading = false;
                 });
-        },
-        coverImage(product) {
-            if (product.images.length) {
-                return product.images[0].path;
-            }
-            return './assets/placeholder.png';
         },
         formatDate(date) {
             return dayjs(date).format('MMMM D, YYYY hh:mm');

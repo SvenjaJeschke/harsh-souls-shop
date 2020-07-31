@@ -138,7 +138,7 @@ export default {
             this.loading.delete = true;
             this.$http.delete(`/api/images/${this.image.id}`)
                 .then(response => {
-                    this.$root.$emit('open-alert-snackbar', response.data.message);
+                    this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
                 })
                 .finally(() => {
@@ -160,7 +160,7 @@ export default {
             this.loading.makeCoverImage = true;
             this.$http.put(`/api/product/cover-image/${this.image.id}`)
                 .then(response => {
-                    this.$root.$emit('open-alert-snackbar', response.data.message);
+                    this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
                 })
                 .finally(() => {
@@ -171,7 +171,7 @@ export default {
             this.loading.unsetCoverImage = true;
             this.$http.put(`/api/product/cover-image/${this.image.id}/unset`)
                 .then(response => {
-                    this.$root.$emit('open-alert-snackbar', response.data.message);
+                    this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
                 })
                 .finally(() => {

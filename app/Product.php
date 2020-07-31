@@ -85,12 +85,17 @@ class Product extends Model
         return $this->price / 100 * $this->discount->discount_percent;
     }
 
-    /**
-     * @return Image
-     */
-    public function coverImage(): ?Image
+    /*public function coverImage(): ?Image
     {
         return $this->images->where('is_cover', '=', true)->first();
+    }*/
+
+    /**
+     * @return HasOne
+     */
+    public function coverImage(): HasOne
+    {
+        return $this->hasOne(Image::class)->where('is_cover', '=', true);
     }
 
     /**

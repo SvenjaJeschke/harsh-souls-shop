@@ -84,7 +84,7 @@ export default {
                 }
             })
                 .then(response => {
-                    this.$root.$emit('open-alert-snackbar', response.data.message);
+                    this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
                 })
                 .finally(() => {

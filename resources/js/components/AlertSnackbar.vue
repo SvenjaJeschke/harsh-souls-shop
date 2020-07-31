@@ -27,7 +27,7 @@ export default {
         timeout: 5000
     }),
     mounted() {
-        this.$root.$on('open-alert-snackbar', (text) => {
+        this.$root.$on('snackbar', (text) => {
             this.open(text);
         })
     },
