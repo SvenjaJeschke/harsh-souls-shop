@@ -1,5 +1,5 @@
 <template>
-    <v-card :max-width="isCoverImage ? 800 : null" class="mx-auto">
+    <v-card :max-width="isCoverImage ? 800 : null" class="mx-auto" light>
         <v-img
             :src="image.storage_url"
             lazy-src="./assets/placeholder.png"

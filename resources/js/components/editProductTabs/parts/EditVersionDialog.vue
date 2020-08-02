@@ -15,14 +15,20 @@
                 <v-text-field
                     label="Display name"
                     v-model="editVersion.display_name"
+                    :error="!!errorMessages.display_name"
+                    :error-messages="errorMessages.display_name"
                 ></v-text-field>
                 <v-text-field
                     label="Color name"
                     v-model="editVersion.color"
+                    :error="!!errorMessages.color"
+                    :error-messages="errorMessages.color"
                 ></v-text-field>
                 Select display color:
                 <v-color-picker
                     v-model="editVersion.color_code"
+                    :error="!!errorMessages.color_code"
+                    :error-messages="errorMessages.color_code"
                     hide-mode-switch
                     hide-inputs
                     mode="hexa"
@@ -32,18 +38,24 @@
                         <v-text-field
                             label="Price"
                             v-model="editVersion.price"
+                            :error="!!errorMessages.price"
+                            :error-messages="errorMessages.price"
                         ></v-text-field>
                     </v-col>
                     <v-col md="4">
                         <v-checkbox
                             label="Active"
                             v-model="editVersion.is_active"
+                            :error="!!errorMessages.is_active"
+                            :error-messages="errorMessages.is_active"
                         ></v-checkbox>
                     </v-col>
                 </v-row>
                 <v-select
                     v-model="image_id"
                     :items="product.images"
+                    :error="!!errorMessages.image_id"
+                    :error-messages="errorMessages.image_id"
                     clearable
                     item-value="id"
                     label="Image"
@@ -102,8 +114,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
-
 export default {
     name: "EditVersionDialog",
     props: {
@@ -147,7 +157,8 @@ export default {
         return {
             editVersion: null,
             isLoading: false,
-            image_id: null
+            image_id: null,
+            errorMessages: {}
         };
     },
     computed: {
@@ -168,23 +179,28 @@ export default {
         close() {
             this.editVersion = this.copy(this.version);
             this.image_id = this.version.image.id;
+            this.errorMessages = {};
             this.$emit('input', false);
         },
         update() {
             this.isLoading = true;
             this.editVersion.image_id = this.image_id;
+            this.errorMessages = {};
             this.$http.put(`/api/version/${this.version.id}`, this.editVersion)
                 .then(response => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.close();
                     this.$emit('versions-changed');
                 })
+                .catch(error => {
+                    this.errorMessages = error.response.data.errors;
+                })
                 .finally(() => {
                     this.isLoading = false;
                 })
         },
         revertChanges() {
-            this.errorMessages = [];
+            this.errorMessages = {};
             this.editVersion = this.copy(this.version);
             this.image_id = this.version.image.id;
         }

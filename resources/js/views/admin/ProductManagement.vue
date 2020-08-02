@@ -10,6 +10,13 @@
                 single-line
                 hide-details
             ></v-text-field>
+            <v-btn
+                text
+                color="secondary"
+                @click="showCreateProductDialog = true"
+            >
+                Create product
+            </v-btn>
         </v-card-title>
         <v-card-text>
             <v-data-table
@@ -24,14 +31,15 @@
             >
                 <template v-slot:item.coverImage="{item}">
                     <v-img
-                        :src="item.cover_image ? item.cover_image.storage_url : null"
+                        :src="getImage(item)"
                         lazy-src="./assets/placeholder.png"
                         height="50"
                         width="100"
                     ></v-img>
                 </template>
                 <template v-slot:item.price="{item}">
-                    {{item.price}} $
+                    <span v-if="item.price">{{item.price}} $</span>
+                    <span v-else>-</span>
                 </template>
                 <template v-slot:item.is_active="{item}">
                     <v-icon v-if="item.is_active" color="green">
@@ -53,6 +61,9 @@
                 </template>
             </v-data-table>
         </v-card-text>
+        <create-product-dialog
+            v-model="showCreateProductDialog"
+        ></create-product-dialog>
     </v-card>
 </template>
 
@@ -60,12 +71,14 @@
 import dayjs from 'dayjs';
 import EditProductButton from "../../components/productActionButtons/EditProductButton";
 import DeleteProductButton from "../../components/productActionButtons/DeleteProductButton";
+import CreateProductDialog from "../../components/CreateProductDialog";
 
 export default {
     name: 'ProductManagement',
     components: {
         'edit-product-button': EditProductButton,
-        'delete-product-button': DeleteProductButton
+        'delete-product-button': DeleteProductButton,
+        'create-product-dialog': CreateProductDialog
     },
     data() {
         return {
@@ -83,7 +96,8 @@ export default {
                 search: null
             },
             isLoading: false,
-            totalProducts: 0
+            totalProducts: 0,
+            showCreateProductDialog: false
         };
     },
     watch: {
@@ -108,6 +122,15 @@ export default {
         },
         formatDate(date) {
             return dayjs(date).format('MMMM D, YYYY hh:mm');
+        },
+        getImage(item) {
+            if(!!item.coverImage) {
+                return item.coverImage.storage_url;
+            } else if (!!item.images.length) {
+                return item.images[0].storage_url;
+            } else {
+                return null;
+            }
         }
     }
 }

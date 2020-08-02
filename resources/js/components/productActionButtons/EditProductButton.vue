@@ -5,7 +5,7 @@
                 icon
                 color="primary"
                 v-on="on"
-                :to="{name: 'edit-product', params: {id: productId}}"
+                :to="{name: 'edit-product', params: {id: productId}, hash: '#product-details'}"
             >
                 <v-icon small>fa-pen</v-icon>
             </v-btn>

@@ -53,6 +53,7 @@
                 <v-col md="6">
                     <v-img
                         v-if="version.image"
+                        class="white"
                         :src="version.image.storage_url"
                     ></v-img>
                 </v-col>

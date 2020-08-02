@@ -75,6 +75,9 @@ export default {
             this.$http.get('/api/categories')
                 .then(response => {
                     this.categories = response.data;
+                })
+                .catch(() => {
+                    this.getCategories();
                 });
         },
     }

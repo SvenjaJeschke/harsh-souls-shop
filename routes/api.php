@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth:api']], static function() {
     Route::get('/products', 'ProductController@index');
     Route::get('/product/{product}', 'ProductController@show');
     Route::put('/product/{product}', 'ProductController@update');
+    Route::post('/product', 'ProductController@store');
     Route::get('/product/{product}/cover-image', 'ProductController@getCoverImage');
     Route::put('/product/cover-image/{image}', 'ProductController@setCoverImage');
     Route::put('/product/cover-image/{image}/unset', 'ProductController@unsetCoverImage');
@@ -38,6 +39,11 @@ Route::group(['middleware' => ['auth:api']], static function() {
     Route::post('/version/product/{product}', 'VersionController@store');
     Route::delete('/version/{version}', 'VersionController@destroy');
     Route::put('/version/{version}', 'VersionController@update');
+
+    Route::get('/categories/all', 'CategoryController@indexAll');
+    Route::post('/category', 'CategoryController@store');
+    Route::put('/category/{category}', 'CategoryController@update');
+    Route::delete('/category/{category}', 'CategoryController@destroy');
 });
 
 Route::get('/categories', 'CategoryController@index');

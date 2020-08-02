@@ -1,6 +1,10 @@
 <template>
     <v-card v-if="product" class="ma-6">
         <v-card-title>
+            <v-btn light class="mr-3" :to="{name: 'product-management'}">
+                <v-icon left>fa-arrow-left</v-icon>
+                Back to products
+            </v-btn>
             #{{ product.id }} {{ product.display_name }}
             <v-spacer />
             <v-tabs v-model="activeTab" right>
@@ -31,6 +35,9 @@
                 <v-tab-item value="categories">
                     <categories />
                 </v-tab-item>
+                <v-tab-item value="sizes">
+                    <sizes />
+                </v-tab-item>
                 <v-tab-item value="discount">
                     <discount />
                 </v-tab-item>
@@ -46,6 +53,7 @@ import Keywords from "../../components/editProductTabs/Keywords";
 import Versions from "../../components/editProductTabs/Versions";
 import Categories from "../../components/editProductTabs/Categories";
 import Discount from "../../components/editProductTabs/Discount";
+import Sizes from "../../components/editProductTabs/Sizes";
 
 export default {
     name: "EditProduct",
@@ -55,6 +63,7 @@ export default {
         'keywords': Keywords,
         'versions': Versions,
         'categories': Categories,
+        'sizes': Sizes,
         'discount': Discount
     },
     props: {
@@ -72,6 +81,7 @@ export default {
                 {title: 'Keywords', icon: 'fa-search', key: 'keywords'},
                 {title: 'Versions', icon: 'fa-palette', key: 'versions'},
                 {title: 'Categories', icon: 'fa-sitemap', key: 'categories'},
+                {title: 'Sizes', icon: 'fa-ruler', key: 'sizes'},
                 {title: 'Discount', icon: 'fa-percentage', key: 'discount'}
             ],
             activeTab: this.$route.query

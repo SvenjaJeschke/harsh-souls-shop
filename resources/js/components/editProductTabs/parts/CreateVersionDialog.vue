@@ -15,14 +15,20 @@
                 <v-text-field
                     label="Display name"
                     v-model="version.display_name"
+                    :error="!!errorMessages.display_name"
+                    :error-messages="errorMessages.display_name"
                 ></v-text-field>
                 <v-text-field
                     label="Color name"
                     v-model="version.color"
+                    :error="!!errorMessages.color"
+                    :error-messages="errorMessages.color"
                 ></v-text-field>
                 Select display color:
                 <v-color-picker
                     v-model="version.color_code"
+                    :error="!!errorMessages.color_code"
+                    :error-messages="errorMessages.color_code"
                     hide-mode-switch
                     hide-inputs
                     mode="hexa"
@@ -32,18 +38,24 @@
                         <v-text-field
                             label="Price"
                             v-model="version.price"
+                            :error="!!errorMessages.price"
+                            :error-messages="errorMessages.price"
                         ></v-text-field>
                     </v-col>
                     <v-col md="4">
                         <v-checkbox
                             label="Active"
                             v-model="version.is_active"
+                            :error="!!errorMessages.is_active"
+                            :error-messages="errorMessages.is_active"
                         ></v-checkbox>
                     </v-col>
                 </v-row>
                 <v-select
                     v-model="version.image_id"
                     :items="product.images"
+                    :error="!!errorMessages.image_id"
+                    :error-messages="errorMessages.image_id"
                     clearable
                     item-value="id"
                     label="Image"
@@ -125,7 +137,8 @@ export default {
                 is_active: true,
                 image_id: null
             },
-            isLoading: false
+            isLoading: false,
+            errorMessages: {}
         };
     },
     methods: {
@@ -138,15 +151,20 @@ export default {
                 price: 0,
                 is_active: true
             };
+            this.errorMessages = {};
             this.$emit('input', false);
         },
         create() {
             this.isLoading = true;
+            this.errorMessages = {};
             this.$http.post(`/api/version/product/${this.product.id}`, this.version)
                 .then(response => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.close();
                     this.$emit('versions-changed');
+                })
+                .catch(error => {
+                    this.errorMessages = error.response.data.errors;
                 })
                 .finally(() => {
                     this.isLoading = false;

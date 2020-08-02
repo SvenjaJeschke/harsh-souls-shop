@@ -1,10 +1,12 @@
 <template>
-    <div>Categories</div>
+    <v-card class="ma-6">
+
+    </v-card>
 </template>
 
 <script>
 export default {
-name: "Categories"
+    name: 'Categories'
 }
 </script>
 

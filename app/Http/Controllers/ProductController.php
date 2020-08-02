@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Image;
 use App\Product;
@@ -65,6 +66,22 @@ class ProductController extends Controller
         $product->save();
 
         return response()->json(['message' => 'Product details were updated.']);
+    }
+
+    /**
+     * @param CreateProductRequest $request
+     * @return JsonResponse
+     */
+    public function store(CreateProductRequest $request): JsonResponse
+    {
+        Product::create([
+            'display_name' => $request->display_name,
+            'price' => $request->price,
+            'is_active' => $request->is_active,
+            'description' => $request->description
+        ]);
+
+        return response()->json(['message' => 'Product was created.']);
     }
 
     /**
