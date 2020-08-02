@@ -116,4 +116,16 @@ class ProductController extends Controller
 
         return response()->json(['message' => 'The cover image is unset.']);
     }
+
+    /**
+     * @param Product $product
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateCategories(Product $product, Request $request): JsonResponse
+    {
+        $product->categories()->sync($request->categories);
+
+        return response()->json(['message' => 'Product categories were updated.']);
+    }
 }

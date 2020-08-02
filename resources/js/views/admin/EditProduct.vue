@@ -33,7 +33,7 @@
                     <versions :product="product" @versions-changed="getProduct" />
                 </v-tab-item>
                 <v-tab-item value="categories">
-                    <categories />
+                    <categories :product="product" />
                 </v-tab-item>
                 <v-tab-item value="sizes">
                     <sizes />

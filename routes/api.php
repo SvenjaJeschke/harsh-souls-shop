@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:api']], static function() {
     Route::get('/product/{product}/cover-image', 'ProductController@getCoverImage');
     Route::put('/product/cover-image/{image}', 'ProductController@setCoverImage');
     Route::put('/product/cover-image/{image}/unset', 'ProductController@unsetCoverImage');
+    Route::put('/product/{product}/categories', 'ProductController@updateCategories');
 
     Route::post('/images/{product}', 'ImageController@store');
     Route::delete('/images/{image}', 'ImageController@destroy');
