@@ -76,7 +76,7 @@ export default {
                 formData.append('images[]', image, image.name);
             });
             this.$http
-                .post(`/api/images/${this.product.id}`, formData, {
+                .post(`/api/admin/images/${this.product.id}`, formData, {
                     headers: {
                         'Content-Type': 'multipart/formdata'
                     }

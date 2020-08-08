@@ -59,7 +59,14 @@ class Category extends Model
     /**
      * @return Builder[]|Collection
      */
-    public static function withAllChildren() {
+    public static function mainWithAllChildren() {
         return static::with('childrenRecursive')->whereNull('parent_id')->get();
+    }
+
+    /**
+     * @return Builder[]|Collection
+     */
+    public static function withAllChildren() {
+        return static::with('childrenRecursive')->get();
     }
 }

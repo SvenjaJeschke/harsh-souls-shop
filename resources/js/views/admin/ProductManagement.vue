@@ -110,7 +110,7 @@ export default {
         getProducts() {
             this.isLoading = true;
             this.$http
-                .get('/api/products', { params: this.pagination })
+                .get('/api/admin/products', { params: this.pagination })
                 .then((response) => {
                     this.products = response.data.data;
                     this.totalProducts = response.data.total;

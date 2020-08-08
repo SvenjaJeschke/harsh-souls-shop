@@ -16,14 +16,14 @@ class CategoryController extends Controller
      * @return Builder[]|Collection
      */
     public function index() {
-        return Category::withAllChildren()->where('is_active', '=', true);
+        return Category::mainWithAllChildren()->where('is_active', '=', true);
     }
 
     /**
      * @return Builder[]|Collection
      */
     public function indexAll() {
-        return Category::withAllChildren();
+        return Category::mainWithAllChildren();
     }
 
     /**
@@ -64,5 +64,14 @@ class CategoryController extends Controller
     {
         $category->delete();
         return response()->json(['message' => 'Category was deleted.']);
+    }
+
+    /**
+     * @param Category $category
+     * @return Category
+     */
+    public function show(Category $category): Category
+    {
+        return Category::with('parent')->find($category->id);
     }
 }

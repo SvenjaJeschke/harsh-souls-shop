@@ -78,7 +78,7 @@ export default {
         create() {
             this.isLoading = true;
             this.$http
-                .post('/api/size', this.size)
+                .post('/api/admin/size', this.size)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('size-created');

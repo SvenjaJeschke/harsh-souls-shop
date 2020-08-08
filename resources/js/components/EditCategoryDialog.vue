@@ -94,7 +94,10 @@ export default {
             this.isLoading = true;
             this.errorMessages = {};
             this.$http
-                .put(`/api/category/${this.category.id}`, this.editCategory)
+                .put(
+                    `/api/admin/category/${this.category.id}`,
+                    this.editCategory
+                )
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('category-updated');

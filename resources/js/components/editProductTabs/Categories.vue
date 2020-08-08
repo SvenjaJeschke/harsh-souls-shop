@@ -71,14 +71,14 @@ export default {
     },
     methods: {
         getCategories() {
-            this.$http.get('/api/categories/all').then((response) => {
+            this.$http.get('/api/admin/categories/all').then((response) => {
                 this.categories = response.data;
             });
         },
         update() {
             this.isLoading = true;
             this.$http
-                .put(`/api/product/${this.product.id}/categories`, {
+                .put(`/api/admin/product/${this.product.id}/categories`, {
                     categories: this.selected
                 })
                 .then((response) => {

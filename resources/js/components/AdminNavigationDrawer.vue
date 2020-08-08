@@ -1,5 +1,12 @@
 <template>
-    <v-navigation-drawer v-if="checkAuth" v-model="show" app temporary right>
+    <v-navigation-drawer
+        v-if="checkAuth"
+        v-model="show"
+        app
+        temporary
+        right
+        hide-overlay
+    >
         <v-list dense>
             <v-list-item>
                 <v-list-item-avatar>

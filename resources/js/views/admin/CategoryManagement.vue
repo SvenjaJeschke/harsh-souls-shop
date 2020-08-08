@@ -105,7 +105,7 @@ export default {
     },
     methods: {
         getCategories() {
-            this.$http.get('/api/categories/all').then((response) => {
+            this.$http.get('/api/admin/categories/all').then((response) => {
                 this.categories = response.data;
             });
         },
@@ -128,7 +128,7 @@ export default {
         delete(category) {
             this.isLoading = true;
             this.$http
-                .delete(`/api/category/${category.id}`)
+                .delete(`/api/admin/category/${category.id}`)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.getCategories();

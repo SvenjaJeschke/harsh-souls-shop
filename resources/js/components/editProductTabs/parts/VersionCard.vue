@@ -126,7 +126,7 @@ export default {
         delete() {
             this.isLoading = true;
             this.$http
-                .delete(`/api/version/${this.version.id}`)
+                .delete(`/api/admin/version/${this.version.id}`)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('versions-changed');

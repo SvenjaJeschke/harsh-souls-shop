@@ -98,7 +98,7 @@ export default {
     },
     methods: {
         getProduct() {
-            this.$http.get(`/api/product/${this.id}`).then((response) => {
+            this.$http.get(`/api/admin/product/${this.id}`).then((response) => {
                 this.product = response.data;
             });
         }

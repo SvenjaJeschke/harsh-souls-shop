@@ -5,18 +5,18 @@
         :hide-slider="isNotOnMainCategoryPage"
     >
         <v-menu
+            tile
             v-for="(tab, index) in tabs"
             :key="index"
             open-on-hover
             offset-y
             :close-on-content-click="false"
         >
-            <template v-slot:activator="{ on, attrs }">
+            <template v-slot:activator="{ on }">
                 <v-tab
                     :to="{ name: tab.route, query: tab.query }"
                     exact
                     v-on="on"
-                    v-bind="attrs"
                 >
                     {{ tab.display_name }}
                 </v-tab>
@@ -31,6 +31,7 @@
                     v-for="child in tab.category.children_recursive"
                     :key="child.id"
                     :to="{ name: 'products', query: { category: child.id } }"
+                    active-class="primary--text"
                     exact
                 >
                     <v-list-item-title>

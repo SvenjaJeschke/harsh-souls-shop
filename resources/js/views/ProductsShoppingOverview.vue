@@ -1,25 +1,42 @@
 <template>
-    <v-card flat class="mx-6 my-2">
-        <v-card-title>
-
+    <v-card flat class="mx-6 my-2" color="#121212">
+        <v-card-title class="pa-0">
+            <category-breadcrumbs :category="category" />
         </v-card-title>
         <v-divider />
         <v-card-text>
-
+            <v-row>
+                <v-col md="3">
+                    <filters-card v-model="params" />
+                </v-col>
+                <v-col md="9">
+                    <v-row>
+                        <v-col sm="3" md="8" lg="9" />
+                        <v-col sm="9" md="4" lg="3">
+                            <sort-select v-model="params.sort" />
+                        </v-col>
+                    </v-row>
+                    <v-divider />
+                </v-col>
+            </v-row>
         </v-card-text>
     </v-card>
 </template>
 
 <script>
+import CategoryBreadcrumbs from '../components/productsShoppingOverview/CategoryBreadcrumbs';
+import FiltersCard from '../components/productsShoppingOverview/FiltersCard';
+import SortSelect from '../components/productsShoppingOverview/SortSelect';
+
 export default {
     name: 'ProductsShoppingOverview',
+    components: {
+        'category-breadcrumbs': CategoryBreadcrumbs,
+        'filters-card': FiltersCard,
+        'sort-select': SortSelect
+    },
     data() {
         return {
-            sortTypes: [
-                'newest products',
-                'price descending',
-                'price ascending'
-            ],
             params: {
                 categoryId: null,
                 sort: null,
@@ -28,87 +45,61 @@ export default {
                 maxPrice: null,
                 search: null
             },
-            category: {}
+            category: null
         };
     },
     mounted() {
-        this.params.sort = this.sortTypes[0];
         this.getQueryParams();
+        this.getCategory();
     },
     watch: {
         '$route.query': {
-            handler: this.getQueryParams,
+            handler() {
+                this.getQueryParams();
+            },
             deep: true
         },
         params: {
-            handler: this.setQueryParams,
+            handler() {
+                this.setQueryParams();
+            },
             deep: true
         },
-        'params.categoryId'() {}
-    },
-    computed: {
-        categoryIdIsValid() {
-            return (
-                !!this.params.categoryId &&
-                typeof this.params.categoryId === 'number' &&
-                this.params.categoryId > 0
-            );
-        },
-        sortIsValid() {
-            return (
-                !!this.params.sort &&
-                typeof this.params.sort === 'string' &&
-                this.sortTypes.includes(this.sortTypes)
-            );
-        },
-        colorIsValid() {
-            return (
-                !!this.params.color &&
-                typeof this.params.color === 'string' &&
-                this.isColor(this.params.color)
-            );
-        },
-        minPriceIsValid() {
-            return (
-                !!this.params.minPrice &&
-                typeof this.params.minPrice === 'number' &&
-                this.params.minPrice >= 0 &&
-                this.params.minPrice <= this.params.maxPrice
-            );
-        },
-        maxPriceIsValid() {
-            return (
-                !!this.params.maxPrice &&
-                typeof this.params.maxPrice === 'number' &&
-                this.params.maxPrice >= 0 &&
-                this.params.minPrice <= this.params.maxPrice
-            );
-        },
-        searchIsValid() {
-            return (
-                !!this.params.search &&
-                typeof this.params.search === 'string' &&
-                this.params.search.length >= 3
-            );
+        'params.categoryId'() {
+            if (this.params.categoryId) {
+                this.getCategory();
+            } else {
+                this.category = null;
+            }
         }
     },
     methods: {
         getQueryParams() {
             this.params.categoryId =
                 parseInt(this.$route.query.category || '0') || null;
+            this.params.sort = this.$route.query.sort || null;
             this.params.color = this.$route.query.color || null;
             this.params.minPrice = this.$route.query.minPrice || null;
             this.params.maxPrice = this.$route.query.maxPrice || null;
             this.params.search = this.$route.query.search || null;
         },
         setQueryParams() {
-            this.$route.query.category = this.params.categoryId;
-            this.$route.query.color = this.params.color;
-            this.$route.query.minPrice = this.params.minPrice;
-            this.$route.query.maxPrice = this.params.maxPrice;
-            this.$route.query.search = this.params.search;
+            this.setQuery({
+                category: this.params.categoryId,
+                sort: this.params.sort,
+                color: this.params.color,
+                minPrice: this.params.minPrice,
+                maxPrice: this.params.maxPrice,
+                search: this.params.search
+            });
         },
-        getCategory() {}
+        getCategory() {
+            this.$http
+                .get(`/api/categories/${this.params.categoryId}`)
+                .then((response) => {
+                    this.category = response.data;
+                });
+        }
     }
 };
 </script>

@@ -22,13 +22,10 @@
                     :error-messages="errorMessages.color"
                 />
                 Select display color:
-                <v-color-picker
+                <color-picker-swatches
                     v-model="editVersion.color_code"
                     :error="!!errorMessages.color_code"
-                    :error-messages="errorMessages.color_code"
-                    hide-mode-switch
-                    hide-inputs
-                    mode="hexa"
+                    :error-message="errorMessages.color_code"
                 />
                 <v-row>
                     <v-col md="8">
@@ -111,8 +108,13 @@
 </template>
 
 <script>
+import ColorPickerSwatches from '../../ColorPickerSwatches';
+
 export default {
     name: 'EditVersionDialog',
+    components: {
+        'color-picker-swatches': ColorPickerSwatches
+    },
     props: {
         version: {
             type: Object,
@@ -186,7 +188,7 @@ export default {
             this.editVersion.image_id = this.image_id;
             this.errorMessages = {};
             this.$http
-                .put(`/api/version/${this.version.id}`, this.editVersion)
+                .put(`/api/admin/version/${this.version.id}`, this.editVersion)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.close();

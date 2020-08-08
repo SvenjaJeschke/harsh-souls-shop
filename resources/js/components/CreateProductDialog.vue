@@ -96,7 +96,7 @@ export default {
             this.isLoading = true;
             this.errorMessages = {};
             this.$http
-                .post('/api/product', this.product)
+                .post('/api/admin/product', this.product)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.close();

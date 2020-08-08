@@ -87,7 +87,7 @@ export default {
     methods: {
         getCoverImage() {
             this.$http
-                .get(`/api/product/${this.product.id}/cover-image`)
+                .get(`/api/admin/product/${this.product.id}/cover-image`)
                 .then((response) => {
                     this.coverImage = response.data;
                 });

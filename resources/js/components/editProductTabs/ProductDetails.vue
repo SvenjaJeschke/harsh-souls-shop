@@ -141,7 +141,7 @@ export default {
             };
             this.isLoading = true;
             this.$http
-                .put(`/api/product/${this.product.id}`, input)
+                .put(`/api/admin/product/${this.product.id}`, input)
                 .then((response) => {
                     this.errorMessages = [];
                     this.$root.$emit('snackbar', response.data.message);

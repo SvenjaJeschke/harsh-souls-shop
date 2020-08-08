@@ -8,6 +8,7 @@ use App\Image;
 use App\Product;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -23,11 +24,7 @@ class ProductController extends Controller
         $query = Product::with(['images', 'coverImage']);
 
         if ($request->filled('sortBy')) {
-            if ($request->sortDesc[0] === 'true') {
-                $query->orderByDesc($request->sortBy[0]);
-            } else {
-                $query->orderBy($request->sortBy[0]);
-            }
+            $query->orderBy($request->sortBy[0], $request->sortDesc[0] === 'true' ? 'DESC' : 'ASC');
         }
 
         if ($request->filled('search')) {
@@ -39,7 +36,7 @@ class ProductController extends Controller
 
     /**
      * @param Product $product
-     * @return Builder|Model|object|null
+     * @return Builder|Builder[]|Collection|Model|null
      */
     public function show(Product $product)
     {
@@ -47,8 +44,7 @@ class ProductController extends Controller
             'images' => static function ($query) {
                 $query->where('is_cover', '=', false);
             }])
-            ->where('id', '=', $product->id)
-            ->first();
+            ->find($product->id);
     }
 
     /**
@@ -94,6 +90,8 @@ class ProductController extends Controller
     }
 
     /**
+     * todo: gehört in ImageController
+     *
      * @param Image $image
      * @return JsonResponse
      */
@@ -106,6 +104,8 @@ class ProductController extends Controller
     }
 
     /**
+     * todo: gehört in ImageController
+     *
      * @param Image $image
      * @return JsonResponse
      */
@@ -127,5 +127,14 @@ class ProductController extends Controller
         $product->categories()->sync($request->categories);
 
         return response()->json(['message' => 'Product categories were updated.']);
+    }
+
+    /**
+     * @return Builder|Model|object|null
+     */
+    public function getMaxPrice()
+    {
+        return Product::query()->where('is_active', '=', true)
+            ->orderByDesc('price')->first('price');
     }
 }

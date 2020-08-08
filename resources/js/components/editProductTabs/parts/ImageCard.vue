@@ -132,7 +132,7 @@ export default {
         deleteImage() {
             this.loading.delete = true;
             this.$http
-                .delete(`/api/images/${this.image.id}`)
+                .delete(`/api/admin/images/${this.image.id}`)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
@@ -144,7 +144,7 @@ export default {
         download() {
             this.loading.download = true;
             this.$http
-                .get(`/api/images/${this.image.id}/download`, {
+                .get(`/api/admin/images/${this.image.id}/download`, {
                     responseType: 'blob'
                 })
                 .then((response) => {
@@ -157,7 +157,7 @@ export default {
         makeCoverImage() {
             this.loading.makeCoverImage = true;
             this.$http
-                .put(`/api/product/cover-image/${this.image.id}`)
+                .put(`/api/admin/product/cover-image/${this.image.id}`)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
@@ -169,7 +169,7 @@ export default {
         unsetCoverImage() {
             this.loading.unsetCoverImage = true;
             this.$http
-                .put(`/api/product/cover-image/${this.image.id}/unset`)
+                .put(`/api/admin/product/cover-image/${this.image.id}/unset`)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');

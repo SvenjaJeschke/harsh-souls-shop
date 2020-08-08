@@ -74,7 +74,7 @@ export default {
             this.isLoading = true;
             this.errorMessages = {};
             this.$http
-                .post('/api/category', this.category)
+                .post('/api/admin/category', this.category)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('category-created');

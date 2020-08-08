@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['auth:api']], static function() {
+Route::group(['middleware' => ['auth:api'], 'prefix' => 'admin'], static function() {
     Route::get('/products', 'ProductController@index');
     Route::get('/product/{product}', 'ProductController@show');
     Route::put('/product/{product}', 'ProductController@update');
@@ -51,3 +51,6 @@ Route::group(['middleware' => ['auth:api']], static function() {
 });
 
 Route::get('/categories', 'CategoryController@index');
+Route::get('/categories/{category}', 'CategoryController@show');
+
+Route::get('/products/max-price', 'ProductController@getMaxPrice');

@@ -88,7 +88,7 @@ export default {
     methods: {
         getKeywords() {
             this.$http
-                .get(`/api/keywords/product/${this.product.id}`)
+                .get(`/api/admin/keywords/product/${this.product.id}`)
                 .then((response) => {
                     this.keywords = response.data;
                 });
@@ -96,7 +96,7 @@ export default {
         addKeyword() {
             this.isLoading = true;
             this.$http
-                .post(`/api/keywords/product/${this.product.id}`, {
+                .post(`/api/admin/keywords/product/${this.product.id}`, {
                     name: this.newKeyword
                 })
                 .then((response) => {
@@ -110,7 +110,7 @@ export default {
         removeKeyword(keyword) {
             this.$http
                 .delete(
-                    `/api/keywords/${keyword.id}/product/${this.product.id}`
+                    `/api/admin/keywords/${keyword.id}/product/${this.product.id}`
                 )
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
