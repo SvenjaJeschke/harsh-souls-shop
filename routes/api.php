@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth:api']], static function() {
     Route::post('/category', 'CategoryController@store');
     Route::put('/category/{category}', 'CategoryController@update');
     Route::delete('/category/{category}', 'CategoryController@destroy');
+
+    Route::get('/sizes/{product}', 'SizeController@index');
+    Route::post('/size', 'SizeController@store');
 });
 
 Route::get('/categories', 'CategoryController@index');

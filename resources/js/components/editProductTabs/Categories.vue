@@ -1,5 +1,5 @@
 <template>
-    <v-card class="ma-6" flat>
+    <v-card flat>
         <v-card-title>
             Categories
         </v-card-title>

@@ -15,7 +15,8 @@ class CreateSizesTable extends Migration
     {
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('value');
+            $table->string('display_name');
+            $table->decimal('price', 8, 2)->nullable();
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
         });

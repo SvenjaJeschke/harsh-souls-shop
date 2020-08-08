@@ -36,7 +36,7 @@
                     <categories :product="product" />
                 </v-tab-item>
                 <v-tab-item value="sizes">
-                    <sizes />
+                    <sizes :product="product" @sizes-changed="getProduct" />
                 </v-tab-item>
                 <v-tab-item value="discount">
                     <discount />
