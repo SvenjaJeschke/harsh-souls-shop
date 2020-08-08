@@ -4,10 +4,7 @@
             <v-card-title>
                 Create product size
                 <v-spacer />
-                <v-btn
-                    icon
-                    @click="close"
-                >
+                <v-btn icon @click="close">
                     <v-icon>fa-times</v-icon>
                 </v-btn>
             </v-card-title>
@@ -15,12 +12,12 @@
                 <v-text-field
                     label="Size display name"
                     v-model="size.display_name"
-                ></v-text-field>
+                />
                 <v-text-field
                     label="Price"
                     append-icon="fa-dollar-sign"
                     v-model="size.price"
-                ></v-text-field>
+                />
             </v-card-text>
             <v-card-actions>
                 <v-spacer />
@@ -46,7 +43,7 @@ export default {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -59,7 +56,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         },
         value: {
             type: Boolean,
@@ -70,7 +67,7 @@ export default {
         return {
             size: {
                 display_name: null,
-                price: 0.00,
+                price: 0.0,
                 product_id: this.product.id
             },
             isLoading: false,
@@ -80,33 +77,32 @@ export default {
     methods: {
         create() {
             this.isLoading = true;
-            this.$http.post('/api/size', this.size)
-                .then(response => {
+            this.$http
+                .post('/api/size', this.size)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('size-created');
                     this.close();
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.$root.$emit('snackbar', error.response.data.message);
                     this.errorMessages = error.response.data.errors;
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         },
         close() {
             this.size = {
                 display_name: null,
-                price: 0.00,
+                price: 0.0,
                 product_id: this.product.id
             };
             this.errorMessages = {};
             this.$emit('input', false);
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <v-card-text>
-            Size: {{ size.display_name }}<br>
+            Size: {{ size.display_name }}<br />
             Price: {{ size.price }} $
         </v-card-text>
     </v-card>
@@ -14,16 +14,14 @@ export default {
         size: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 display_name: null,
-                price: 0.00,
+                price: 0.0,
                 product_id: null
-            }
+            })
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

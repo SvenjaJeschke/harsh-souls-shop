@@ -4,10 +4,7 @@
             <v-card-title>
                 Create new product
                 <v-spacer />
-                <v-btn
-                    icon
-                    @click="close"
-                >
+                <v-btn icon @click="close">
                     <v-icon>fa-times</v-icon>
                 </v-btn>
             </v-card-title>
@@ -32,7 +29,7 @@
                     </v-col>
                     <v-col md="2">
                         <v-tooltip top>
-                            <template v-slot:activator="{on}">
+                            <template v-slot:activator="{ on }">
                                 <v-checkbox
                                     v-model="product.is_active"
                                     label="Active"
@@ -41,7 +38,8 @@
                                     :error-messages="errorMessages.is_active"
                                 />
                             </template>
-                            If a product is deactivated, the customers won't be able to see or order it in the shop.
+                            If a product is deactivated, the customers won't be
+                            able to see or order it in the shop.
                         </v-tooltip>
                     </v-col>
                 </v-row>
@@ -57,7 +55,7 @@
                 </v-row>
             </v-card-text>
             <v-card-actions>
-                <v-spacer></v-spacer>
+                <v-spacer />
                 <v-btn
                     text
                     color="secondary"
@@ -74,7 +72,7 @@
 
 <script>
 export default {
-    name: "CreateProductDialog",
+    name: 'CreateProductDialog',
     props: {
         value: {
             type: Boolean,
@@ -97,17 +95,18 @@ export default {
         create() {
             this.isLoading = true;
             this.errorMessages = {};
-            this.$http.post('/api/product', this.product)
-                .then(response => {
+            this.$http
+                .post('/api/product', this.product)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.close();
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.errorMessages = error.response.data.errors;
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         },
         close() {
             this.product = {
@@ -120,9 +119,7 @@ export default {
             this.$emit('input', false);
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

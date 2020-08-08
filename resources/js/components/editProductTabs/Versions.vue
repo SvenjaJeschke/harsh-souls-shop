@@ -2,16 +2,12 @@
     <v-card flat>
         <v-card-title>
             Product Versions
-            <v-spacer></v-spacer>
-            <v-btn
-                text
-                color="secondary"
-                @click="showCreateModal = true"
-            >
+            <v-spacer />
+            <v-btn text color="secondary" @click="showCreateModal = true">
                 Create Version
             </v-btn>
         </v-card-title>
-        <v-divider></v-divider>
+        <v-divider />
         <v-card-text>
             <v-row>
                 <v-col
@@ -23,7 +19,7 @@
                         :version="version"
                         :product="product"
                         @versions-changed="$emit('versions-changed')"
-                    ></version-card>
+                    />
                 </v-col>
             </v-row>
         </v-card-text>
@@ -31,16 +27,16 @@
             :product="product"
             v-model="showCreateModal"
             @versions-changed="$emit('versions-changed')"
-        ></create-version-dialog>
+        />
     </v-card>
 </template>
 
 <script>
-import VersionCard from "./parts/VersionCard";
-import CreateVersionDialog from "./parts/CreateVersionDialog";
+import VersionCard from './parts/VersionCard';
+import CreateVersionDialog from './parts/CreateVersionDialog';
 
 export default {
-    name: "Versions",
+    name: 'Versions',
     components: {
         'version-card': VersionCard,
         'create-version-dialog': CreateVersionDialog
@@ -49,7 +45,7 @@ export default {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -62,7 +58,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         }
     },
     data() {
@@ -70,9 +66,7 @@ export default {
             showCreateModal: false
         };
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

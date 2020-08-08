@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        redirect: {name: 'home'}
+        redirect: { name: 'home' }
     },
     {
         name: 'home',
@@ -15,9 +15,9 @@ const routes = [
         description: 'campaigns, discounts and new products'
     },
     {
-        name: 'products-list',
-        path: '/products/:category/:sort?/:color?/:pricerange?/:search?',
-        component: () => import('./views/ProductsList'),
+        name: 'products',
+        path: '/products',
+        component: () => import('./views/ProductsShoppingOverview'),
         description: 'products overview with search, filter and sorting options'
     },
     {

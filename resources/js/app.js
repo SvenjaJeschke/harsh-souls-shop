@@ -4,18 +4,20 @@ import router from './router';
 import App from './Application';
 import vuetify from './vuetify';
 import store from './store';
-import Copy from './mixins/Copy';
+import Helpers from './mixins/Helpers.js';
 
 axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+    'X-CSRF-TOKEN': document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute('content'),
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json'
 };
 
 Vue.prototype.$http = axios;
 
-Vue.mixin(Copy);
+Vue.mixin(Helpers);
 
 let app;
 
@@ -28,7 +30,7 @@ function mountApp() {
         vuetify,
         store,
         components: {
-            'app': App
+            app: App
         }
     });
 }

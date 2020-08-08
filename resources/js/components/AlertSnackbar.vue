@@ -1,17 +1,8 @@
 <template>
-    <v-snackbar
-        v-model="show"
-        :timeout="timeout"
-        bottom
-    >
+    <v-snackbar v-model="show" :timeout="timeout" bottom>
         {{ text }}
         <template v-slot:action="{ attrs }">
-            <v-btn
-                color="secondary"
-                text
-                v-bind="attrs"
-                @click="show = false"
-            >
+            <v-btn color="secondary" text v-bind="attrs" @click="show = false">
                 Close
             </v-btn>
         </template>
@@ -20,7 +11,7 @@
 
 <script>
 export default {
-    name: "AlertSnackbar",
+    name: 'AlertSnackbar',
     data: () => ({
         show: false,
         text: null,
@@ -29,7 +20,7 @@ export default {
     mounted() {
         this.$root.$on('snackbar', (text) => {
             this.open(text);
-        })
+        });
     },
     methods: {
         open(text) {
@@ -37,6 +28,5 @@ export default {
             this.show = true;
         }
     }
-}
+};
 </script>
-

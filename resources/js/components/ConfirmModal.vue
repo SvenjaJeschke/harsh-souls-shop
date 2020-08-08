@@ -8,19 +8,11 @@
                 {{ text }}
             </v-card-text>
             <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                    text
-                    color="primary"
-                    @click="cancel"
-                >
+                <v-spacer />
+                <v-btn text color="primary" @click="cancel">
                     Cancel
                 </v-btn>
-                <v-btn
-                    text
-                    color="primary"
-                    @click="confirm"
-                >
+                <v-btn text color="primary" @click="confirm">
                     Confirm
                 </v-btn>
             </v-card-actions>
@@ -30,7 +22,7 @@
 
 <script>
 export default {
-    name: "ConfirmModal",
+    name: 'ConfirmModal',
     data() {
         return {
             showModal: false,
@@ -38,7 +30,7 @@ export default {
             text: null,
             resolve: null,
             reject: null
-        }
+        };
     },
     methods: {
         open(title, text) {
@@ -47,9 +39,9 @@ export default {
             this.showModal = true;
 
             return new Promise((resolve, reject) => {
-                this.resolve = resolve
-                this.reject = reject
-            })
+                this.resolve = resolve;
+                this.reject = reject;
+            });
         },
         cancel() {
             this.showModal = false;
@@ -60,9 +52,7 @@ export default {
             this.resolve(true);
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

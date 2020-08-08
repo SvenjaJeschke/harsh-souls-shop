@@ -6,7 +6,7 @@
         <v-card-subtitle>
             This image will always be shown as the first image of the product.
         </v-card-subtitle>
-        <v-divider></v-divider>
+        <v-divider />
         <v-card-text>
             <image-card
                 v-if="coverImage"
@@ -21,23 +21,14 @@
         <v-card-title>
             Product images
             <v-spacer />
-            <v-btn
-                text
-                color="secondary"
-                @click="showUploadModal = true"
-            >
+            <v-btn text color="secondary" @click="showUploadModal = true">
                 Upload Images
             </v-btn>
         </v-card-title>
-        <v-divider></v-divider>
-
+        <v-divider />
         <v-card-text>
             <v-row>
-                <v-col
-                    v-for="image in product.images"
-                    :key="image.id"
-                    md="4"
-                >
+                <v-col v-for="image in product.images" :key="image.id" md="4">
                     <image-card
                         :image="image"
                         :has-cover-image="!!coverImage"
@@ -55,11 +46,11 @@
 </template>
 
 <script>
-import UploadDialog from "./parts/UploadDialog";
-import ImageCard from "./parts/ImageCard";
+import UploadDialog from './parts/UploadDialog';
+import ImageCard from './parts/ImageCard';
 
 export default {
-    name: "Images",
+    name: 'Images',
     components: {
         'upload-dialog': UploadDialog,
         'image-card': ImageCard
@@ -68,7 +59,7 @@ export default {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -81,7 +72,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         }
     },
     data() {
@@ -95,19 +86,18 @@ export default {
     },
     methods: {
         getCoverImage() {
-            this.$http.get(`/api/product/${this.product.id}/cover-image`)
-                .then(response => {
+            this.$http
+                .get(`/api/product/${this.product.id}/cover-image`)
+                .then((response) => {
                     this.coverImage = response.data;
-                })
+                });
         },
         imagesChanged() {
             this.$emit('files-changed');
             this.getCoverImage();
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

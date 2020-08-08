@@ -8,7 +8,7 @@
                     label="E-Mail"
                     :error="!!errors.email"
                     :error-messages="errors.email"
-                ></v-text-field>
+                />
                 <v-text-field
                     v-model="input.password"
                     label="Password"
@@ -18,11 +18,11 @@
                     :error="!!errors.password"
                     :error-messages="errors.password"
                     @click:append="showPassword = !showPassword"
-                ></v-text-field>
+                />
             </v-form>
         </v-card-text>
         <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn
                 color="primary"
                 @click="login"
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'LoginForm',
@@ -56,31 +56,32 @@ export default {
     },
     mounted() {
         if (this.checkAuth) {
-            this.$router.push({name: 'home'});
+            this.$router.push({ name: 'home' });
         }
     },
     methods: {
         login() {
             this.isLoading = true;
             this.errors = [];
-            this.$http.post('/login', this.input, {
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-                .then(response => {
+            this.$http
+                .post('/login', this.input, {
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                })
+                .then((response) => {
                     this.$store.dispatch('getUser');
                     this.$root.$emit('snackbar', response.data.message);
                     location.reload();
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.$root.$emit('snackbar', error.response.data.message);
                     this.errors = error.response.data.errors;
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         }
     }
-}
+};
 </script>

@@ -4,10 +4,7 @@
             <v-card-title>
                 Create new product version
                 <v-spacer />
-                <v-btn
-                    icon
-                    @click="close"
-                >
+                <v-btn icon @click="close">
                     <v-icon>fa-times</v-icon>
                 </v-btn>
             </v-card-title>
@@ -17,13 +14,13 @@
                     v-model="version.display_name"
                     :error="!!errorMessages.display_name"
                     :error-messages="errorMessages.display_name"
-                ></v-text-field>
+                />
                 <v-text-field
                     label="Color name"
                     v-model="version.color"
                     :error="!!errorMessages.color"
                     :error-messages="errorMessages.color"
-                ></v-text-field>
+                />
                 Select display color:
                 <v-color-picker
                     v-model="version.color_code"
@@ -32,7 +29,7 @@
                     hide-mode-switch
                     hide-inputs
                     mode="hexa"
-                ></v-color-picker>
+                />
                 <v-row>
                     <v-col md="8">
                         <v-text-field
@@ -40,7 +37,7 @@
                             v-model="version.price"
                             :error="!!errorMessages.price"
                             :error-messages="errorMessages.price"
-                        ></v-text-field>
+                        />
                     </v-col>
                     <v-col md="4">
                         <v-checkbox
@@ -48,7 +45,7 @@
                             v-model="version.is_active"
                             :error="!!errorMessages.is_active"
                             :error-messages="errorMessages.is_active"
-                        ></v-checkbox>
+                        />
                     </v-col>
                 </v-row>
                 <v-select
@@ -67,7 +64,7 @@
                             contain
                             position="start"
                             :src="item.storage_url"
-                        ></v-img>
+                        />
                         {{ item.original_name }}
                     </template>
                     <template v-slot:item="{ item }">
@@ -77,7 +74,7 @@
                             contain
                             position="start"
                             :src="item.storage_url"
-                        ></v-img>
+                        />
                         {{ item.original_name }}
                     </template>
                 </v-select>
@@ -101,12 +98,12 @@
 
 <script>
 export default {
-    name: "CreateVersionDialog",
+    name: 'CreateVersionDialog',
     props: {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -119,7 +116,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         },
         value: {
             type: Boolean,
@@ -157,23 +154,22 @@ export default {
         create() {
             this.isLoading = true;
             this.errorMessages = {};
-            this.$http.post(`/api/version/product/${this.product.id}`, this.version)
-                .then(response => {
+            this.$http
+                .post(`/api/version/product/${this.product.id}`, this.version)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.close();
                     this.$emit('versions-changed');
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.errorMessages = error.response.data.errors;
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

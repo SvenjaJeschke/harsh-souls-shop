@@ -3,22 +3,14 @@
         <v-card-title>
             Sizes
             <v-spacer />
-            <v-btn
-                text
-                color="secondary"
-                @click="showCreateDialog = true"
-            >
+            <v-btn text color="secondary" @click="showCreateDialog = true">
                 Create size
             </v-btn>
         </v-card-title>
-        <v-divider></v-divider>
+        <v-divider />
         <v-card-text>
             <v-row>
-                <v-col
-                    v-for="size in product.sizes"
-                    :key="size.id"
-                    md="4"
-                >
+                <v-col v-for="size in product.sizes" :key="size.id" md="4">
                     <size-card :size="size" />
                 </v-col>
             </v-row>
@@ -28,13 +20,13 @@
             v-model="showCreateDialog"
             :product="product"
             @size-created="$emit('sizes-changed')"
-        ></create-size-dialog>
+        />
     </v-card>
 </template>
 
 <script>
-import SizeCard from "./parts/SizeCard";
-import CreateSizeDialog from "./parts/CreateSizeDialog";
+import SizeCard from './parts/SizeCard';
+import CreateSizeDialog from './parts/CreateSizeDialog';
 
 export default {
     name: 'Sizes',
@@ -46,7 +38,7 @@ export default {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -60,7 +52,7 @@ export default {
                 versions: [],
                 images: [],
                 sizes: []
-            }
+            })
         }
     },
     data() {
@@ -68,9 +60,7 @@ export default {
             showCreateDialog: false
         };
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

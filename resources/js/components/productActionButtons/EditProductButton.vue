@@ -1,11 +1,15 @@
 <template>
     <v-tooltip bottom>
-        <template v-slot:activator="{on}">
+        <template v-slot:activator="{ on }">
             <v-btn
                 icon
                 color="primary"
                 v-on="on"
-                :to="{name: 'edit-product', params: {id: productId}, hash: '#product-details'}"
+                :to="{
+                    name: 'edit-product',
+                    params: { id: productId },
+                    hash: '#product-details'
+                }"
             >
                 <v-icon small>fa-pen</v-icon>
             </v-btn>
@@ -16,16 +20,14 @@
 
 <script>
 export default {
-    name: "EditProductButton",
+    name: 'EditProductButton',
     props: {
         productId: {
             type: Number,
             required: true
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

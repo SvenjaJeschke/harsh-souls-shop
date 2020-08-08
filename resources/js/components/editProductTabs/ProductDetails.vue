@@ -3,7 +3,7 @@
         <v-card-title>
             Edit Product Details
         </v-card-title>
-        <v-divider></v-divider>
+        <v-divider />
         <v-card-text>
             <v-row>
                 <v-col md="8">
@@ -25,7 +25,7 @@
                 </v-col>
                 <v-col md="1">
                     <v-tooltip top>
-                        <template v-slot:activator="{on}">
+                        <template v-slot:activator="{ on }">
                             <v-checkbox
                                 v-model="editProduct.is_active"
                                 label="Active"
@@ -34,7 +34,8 @@
                                 :error-messages="errorMessages.is_active"
                             />
                         </template>
-                        If a product is deactivated, the customers won't be able to see or order it in the shop.
+                        If a product is deactivated, the customers won't be able
+                        to see or order it in the shop.
                     </v-tooltip>
                 </v-col>
             </v-row>
@@ -50,9 +51,9 @@
             </v-row>
         </v-card-text>
         <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-tooltip top>
-                <template v-slot:activator="{on}">
+                <template v-slot:activator="{ on }">
                     <v-btn
                         text
                         :disabled="!hasChanges"
@@ -79,12 +80,12 @@
 
 <script>
 export default {
-    name: "ProductDetails",
+    name: 'ProductDetails',
     props: {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -97,7 +98,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         }
     },
     data() {
@@ -105,14 +106,16 @@ export default {
             editProduct: null,
             isLoading: false,
             errorMessages: []
-        }
+        };
     },
     computed: {
         hasChanges() {
-            return this.product.display_name !== this.editProduct.display_name ||
+            return (
+                this.product.display_name !== this.editProduct.display_name ||
                 this.product.price !== this.editProduct.price ||
                 this.product.is_active !== this.editProduct.is_active ||
-                this.product.description !== this.editProduct.description;
+                this.product.description !== this.editProduct.description
+            );
         }
     },
     watch: {
@@ -137,28 +140,27 @@ export default {
                 description: this.editProduct.description
             };
             this.isLoading = true;
-            this.$http.put(`/api/product/${this.product.id}`, input)
-                .then(response => {
+            this.$http
+                .put(`/api/product/${this.product.id}`, input)
+                .then((response) => {
                     this.errorMessages = [];
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('product-changed');
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.$root.$emit('snackbar', error.response.data.message);
                     this.errorMessages = error.response.data.errors;
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         },
         revertChanges() {
             this.errorMessages = [];
             this.editProduct = this.copy(this.product);
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

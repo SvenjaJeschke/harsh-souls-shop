@@ -1,12 +1,7 @@
 <template>
     <v-tooltip bottom>
-        <template v-slot:activator="{on}">
-            <v-btn
-                icon
-                color="error"
-                v-on="on"
-                @click.stop="confirmDelete"
-            >
+        <template v-slot:activator="{ on }">
+            <v-btn icon color="error" v-on="on" @click.stop="confirmDelete">
                 <v-icon>mdi-delete</v-icon>
             </v-btn>
         </template>
@@ -16,7 +11,7 @@
 
 <script>
 export default {
-    name: "DeleteProductButton",
+    name: 'DeleteProductButton',
     props: {
         productId: {
             type: Number,
@@ -25,22 +20,20 @@ export default {
     },
     methods: {
         confirmDelete() {
-            this.$root.$confirm(
-                'Delete Product',
-                'Do you really want to delete this product?'
-            ).then(confirm => {
-                if (confirm) {
-                    this.deleteProduct();
-                }
-            })
+            this.$root
+                .$confirm(
+                    'Delete Product',
+                    'Do you really want to delete this product?'
+                )
+                .then((confirm) => {
+                    if (confirm) {
+                        this.deleteProduct();
+                    }
+                });
         },
-        deleteProduct() {
-
-        }
+        deleteProduct() {}
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

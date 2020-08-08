@@ -1,15 +1,9 @@
 <template>
-    <v-navigation-drawer
-        v-if="checkAuth"
-        v-model="show"
-        app
-        temporary
-        right
-    >
+    <v-navigation-drawer v-if="checkAuth" v-model="show" app temporary right>
         <v-list dense>
             <v-list-item>
                 <v-list-item-avatar>
-                    <v-img src="./assets/harshsouls.png"></v-img>
+                    <v-img src="./assets/harshsouls.png" />
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -23,7 +17,7 @@
             <v-list-item
                 v-for="(item, index) in items"
                 :key="index"
-                :to="{name: item.route}"
+                :to="{ name: item.route }"
             >
                 <v-list-item-icon>
                     <v-icon small>{{ item.icon }}</v-icon>
@@ -38,10 +32,10 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from 'vuex';
 
 export default {
-    name: "AdminNavigationDrawer",
+    name: 'AdminNavigationDrawer',
     data() {
         return {
             show: false
@@ -74,9 +68,7 @@ export default {
             this.show = !this.show;
         });
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

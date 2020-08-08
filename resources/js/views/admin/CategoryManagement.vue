@@ -2,12 +2,8 @@
     <v-card class="ma-6">
         <v-card-title>
             Categories
-            <v-spacer></v-spacer>
-            <v-btn
-                text
-                color="secondary"
-                @click="create()"
-            >
+            <v-spacer />
+            <v-btn text color="secondary" @click="create()">
                 <v-icon left>fa-plus</v-icon>
                 Create main category
             </v-btn>
@@ -18,11 +14,11 @@
                 item-children="children_recursive"
                 hoverable
             >
-                <template v-slot:label="{item}">
+                <template v-slot:label="{ item }">
                     <v-icon left>fa-folder</v-icon>
-                    {{item.display_name}}
+                    {{ item.display_name }}
                     <v-tooltip top>
-                        <template v-slot:activator="{on}">
+                        <template v-slot:activator="{ on }">
                             <v-btn
                                 v-on="on"
                                 icon
@@ -35,10 +31,13 @@
                         Edit
                     </v-tooltip>
                     <v-tooltip top>
-                        <template v-slot:activator="{on}">
+                        <template v-slot:activator="{ on }">
                             <v-btn
                                 v-on="on"
-                                :disabled="!!item.children_recursive.length || isLoading"
+                                :disabled="
+                                    !!item.children_recursive.length ||
+                                    isLoading
+                                "
                                 :loading="isLoading"
                                 icon
                                 color="error"
@@ -50,7 +49,7 @@
                         Delete
                     </v-tooltip>
                     <v-tooltip top>
-                        <template v-slot:activator="{on}">
+                        <template v-slot:activator="{ on }">
                             <v-btn
                                 v-if="!item.parent_id"
                                 v-on="on"
@@ -106,29 +105,31 @@ export default {
     },
     methods: {
         getCategories() {
-            this.$http.get('/api/categories/all')
-                .then(response => {
-                    this.categories = response.data;
-                })
+            this.$http.get('/api/categories/all').then((response) => {
+                this.categories = response.data;
+            });
         },
         create(parent_id = null) {
             this.createCategoryParentId = parent_id;
             this.showCreateModal = true;
         },
         confirmDelete(category) {
-            this.$root.$confirm(
-                'Delete Category',
-                `Do you really want to delete the category ${category.display_name}?`
-            ).then(confirm => {
-                if (confirm) {
-                    this.delete(category);
-                }
-            })
+            this.$root
+                .$confirm(
+                    'Delete Category',
+                    `Do you really want to delete the category ${category.display_name}?`
+                )
+                .then((confirm) => {
+                    if (confirm) {
+                        this.delete(category);
+                    }
+                });
         },
         delete(category) {
             this.isLoading = true;
-            this.$http.delete(`/api/category/${category.id}`)
-                .then(response => {
+            this.$http
+                .delete(`/api/category/${category.id}`)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.getCategories();
                 })
@@ -141,9 +142,7 @@ export default {
             this.editCategory = category;
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

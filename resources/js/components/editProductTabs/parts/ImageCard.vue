@@ -1,14 +1,11 @@
 <template>
     <v-card :max-width="isCoverImage ? 800 : null" class="mx-auto" light>
-        <v-img
-            :src="image.storage_url"
-            lazy-src="./assets/placeholder.png"
-        >
+        <v-img :src="image.storage_url" lazy-src="./assets/placeholder.png">
             <v-card-title>
                 {{ image.original_name }}
                 <v-spacer />
                 <v-tooltip top>
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                         <v-btn
                             v-if="!isCoverImage"
                             icon
@@ -23,7 +20,7 @@
                     Make cover image
                 </v-tooltip>
                 <v-tooltip top>
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                         <v-btn
                             v-if="isCoverImage"
                             icon
@@ -38,7 +35,7 @@
                     Unset cover image. Image won't be deleted.
                 </v-tooltip>
                 <v-tooltip top>
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                         <v-btn
                             icon
                             :disabled="loading.download"
@@ -52,7 +49,7 @@
                     Download
                 </v-tooltip>
                 <v-tooltip top>
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                         <v-btn
                             icon
                             :disabled="loading.delete"
@@ -67,12 +64,8 @@
                 </v-tooltip>
             </v-card-title>
             <template v-slot:placeholder>
-                <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                >
-                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                    <v-progress-circular indeterminate color="grey lighten-5" />
                 </v-row>
             </template>
         </v-img>
@@ -80,15 +73,15 @@
 </template>
 
 <script>
-import {saveAs} from 'file-saver';
+import { saveAs } from 'file-saver';
 
 export default {
-    name: "ImageCard",
+    name: 'ImageCard',
     props: {
         image: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 product_id: null,
                 version_id: null,
@@ -102,7 +95,7 @@ export default {
                 is_visible: false,
                 created_at: '',
                 updated_at: ''
-            }
+            })
         },
         hasCoverImage: {
             type: Boolean,
@@ -121,67 +114,72 @@ export default {
                 makeCoverImage: false,
                 unsetCoverImage: false
             }
-        }
+        };
     },
     methods: {
         confirmDelete() {
-            this.$root.$confirm(
-                'Remove Image',
-                'Do you really want to remove this image? You won\'t be able to view or download it anymore.'
-            ).then(confirm => {
-                if (confirm) {
-                    this.deleteImage();
-                }
-            })
+            this.$root
+                .$confirm(
+                    'Remove Image',
+                    "Do you really want to remove this image? You won't be able to view or download it anymore."
+                )
+                .then((confirm) => {
+                    if (confirm) {
+                        this.deleteImage();
+                    }
+                });
         },
         deleteImage() {
             this.loading.delete = true;
-            this.$http.delete(`/api/images/${this.image.id}`)
-                .then(response => {
+            this.$http
+                .delete(`/api/images/${this.image.id}`)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
                 })
                 .finally(() => {
                     this.loading.delete = false;
-                })
+                });
         },
         download() {
             this.loading.download = true;
-            this.$http.get(`/api/images/${this.image.id}/download`, {
-                responseType: 'blob'
-            }).then(response => {
-                saveAs(response.data, this.image.original_name);
-            })
-            .finally(() => {
-                this.loading.download = false;
-            })
+            this.$http
+                .get(`/api/images/${this.image.id}/download`, {
+                    responseType: 'blob'
+                })
+                .then((response) => {
+                    saveAs(response.data, this.image.original_name);
+                })
+                .finally(() => {
+                    this.loading.download = false;
+                });
         },
         makeCoverImage() {
             this.loading.makeCoverImage = true;
-            this.$http.put(`/api/product/cover-image/${this.image.id}`)
-                .then(response => {
+            this.$http
+                .put(`/api/product/cover-image/${this.image.id}`)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
                 })
                 .finally(() => {
                     this.loading.makeCoverImage = false;
-                })
+                });
         },
         unsetCoverImage() {
             this.loading.unsetCoverImage = true;
-            this.$http.put(`/api/product/cover-image/${this.image.id}/unset`)
-                .then(response => {
+            this.$http
+                .put(`/api/product/cover-image/${this.image.id}/unset`)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
                 })
                 .finally(() => {
                     this.loading.unsetCoverImage = false;
-                })
+                });
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -9,7 +9,7 @@
                 label="Search"
                 single-line
                 hide-details
-            ></v-text-field>
+            />
             <v-btn
                 text
                 color="secondary"
@@ -29,19 +29,19 @@
                     itemsPerPageOptions: [10, 20, 50, 100, 200]
                 }"
             >
-                <template v-slot:item.coverImage="{item}">
+                <template v-slot:item.coverImage="{ item }">
                     <v-img
                         :src="getImage(item)"
                         lazy-src="./assets/placeholder.png"
                         height="50"
                         width="100"
-                    ></v-img>
+                    />
                 </template>
-                <template v-slot:item.price="{item}">
-                    <span v-if="item.price">{{item.price}} $</span>
+                <template v-slot:item.price="{ item }">
+                    <span v-if="item.price">{{ item.price }} $</span>
                     <span v-else>-</span>
                 </template>
-                <template v-slot:item.is_active="{item}">
+                <template v-slot:item.is_active="{ item }">
                     <v-icon v-if="item.is_active" color="green">
                         mdi-check
                     </v-icon>
@@ -49,29 +49,27 @@
                         mdi-clear
                     </v-icon>
                 </template>
-                <template v-slot:item.updated_at="{item}">
-                    {{formatDate(item.updated_at)}}
+                <template v-slot:item.updated_at="{ item }">
+                    {{ formatDate(item.updated_at) }}
                 </template>
-                <template v-slot:item.created_at="{item}">
-                    {{formatDate(item.created_at)}}
+                <template v-slot:item.created_at="{ item }">
+                    {{ formatDate(item.created_at) }}
                 </template>
-                <template v-slot:item.actions="{item}">
+                <template v-slot:item.actions="{ item }">
                     <edit-product-button :product-id="item.id" />
                     <delete-product-button :product-id="item.id" />
                 </template>
             </v-data-table>
         </v-card-text>
-        <create-product-dialog
-            v-model="showCreateProductDialog"
-        ></create-product-dialog>
+        <create-product-dialog v-model="showCreateProductDialog" />
     </v-card>
 </template>
 
 <script>
 import dayjs from 'dayjs';
-import EditProductButton from "../../components/productActionButtons/EditProductButton";
-import DeleteProductButton from "../../components/productActionButtons/DeleteProductButton";
-import CreateProductDialog from "../../components/CreateProductDialog";
+import EditProductButton from '../../components/productActionButtons/EditProductButton';
+import DeleteProductButton from '../../components/productActionButtons/DeleteProductButton';
+import CreateProductDialog from '../../components/CreateProductDialog';
 
 export default {
     name: 'ProductManagement',
@@ -83,13 +81,13 @@ export default {
     data() {
         return {
             headers: [
-                {text: 'Image', value: 'coverImage', sortable: false},
-                {text: 'Name', value: 'display_name'},
-                {text: 'Price', value: 'price'},
-                {text: 'Active', value: 'is_active'},
-                {text: 'Updated', value: 'updated_at'},
-                {text: 'Created', value: 'created_at'},
-                {text: 'Actions', value: 'actions', sortable: false}
+                { text: 'Image', value: 'coverImage', sortable: false },
+                { text: 'Name', value: 'display_name' },
+                { text: 'Price', value: 'price' },
+                { text: 'Active', value: 'is_active' },
+                { text: 'Updated', value: 'updated_at' },
+                { text: 'Created', value: 'created_at' },
+                { text: 'Actions', value: 'actions', sortable: false }
             ],
             products: [],
             pagination: {
@@ -111,8 +109,9 @@ export default {
     methods: {
         getProducts() {
             this.isLoading = true;
-            this.$http.get('/api/products', {params: this.pagination})
-                .then(response => {
+            this.$http
+                .get('/api/products', { params: this.pagination })
+                .then((response) => {
                     this.products = response.data.data;
                     this.totalProducts = response.data.total;
                 })
@@ -124,18 +123,16 @@ export default {
             return dayjs(date).format('MMMM D, YYYY hh:mm');
         },
         getImage(item) {
-            if(!!item.coverImage) {
+            if (item.coverImage) {
                 return item.coverImage.storage_url;
-            } else if (!!item.images.length) {
+            } else if (item.images.length) {
                 return item.images[0].storage_url;
             } else {
                 return null;
             }
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

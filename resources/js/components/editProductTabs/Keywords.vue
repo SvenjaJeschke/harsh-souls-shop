@@ -4,9 +4,10 @@
             Keywords
         </v-card-title>
         <v-card-subtitle>
-            Set keywords so users can find products easier by using the search functionality.
+            Set keywords so users can find products easier by using the search
+            functionality.
         </v-card-subtitle>
-        <v-divider></v-divider>
+        <v-divider />
         <v-card-text>
             <v-card flat class="mx-auto" max-width="800">
                 <v-row>
@@ -15,7 +16,7 @@
                             v-model="newKeyword"
                             label="Type new keyword"
                             hide-details
-                        ></v-text-field>
+                        />
                     </v-col>
                     <v-col md="2">
                         <v-btn
@@ -53,7 +54,7 @@ export default {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -66,7 +67,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         }
     },
     data() {
@@ -86,33 +87,38 @@ export default {
     },
     methods: {
         getKeywords() {
-            this.$http.get(`/api/keywords/product/${this.product.id}`)
-                .then(response => {
+            this.$http
+                .get(`/api/keywords/product/${this.product.id}`)
+                .then((response) => {
                     this.keywords = response.data;
-                })
+                });
         },
         addKeyword() {
             this.isLoading = true;
-            this.$http.post(`/api/keywords/product/${this.product.id}`, {name: this.newKeyword})
-                .then(response => {
+            this.$http
+                .post(`/api/keywords/product/${this.product.id}`, {
+                    name: this.newKeyword
+                })
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.getKeywords();
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         },
         removeKeyword(keyword) {
-            this.$http.delete(`/api/keywords/${keyword.id}/product/${this.product.id}`)
-                .then(response => {
+            this.$http
+                .delete(
+                    `/api/keywords/${keyword.id}/product/${this.product.id}`
+                )
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.getKeywords();
                 });
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

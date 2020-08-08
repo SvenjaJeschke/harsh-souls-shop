@@ -2,21 +2,17 @@
     <v-card>
         <v-card-title>
             {{ version.display_name }}
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-tooltip top>
-                <template v-slot:activator="{on}">
-                    <v-btn
-                        icon
-                        v-on="on"
-                        @click="showEditModal = true"
-                    >
+                <template v-slot:activator="{ on }">
+                    <v-btn icon v-on="on" @click="showEditModal = true">
                         <v-icon>fa-pen</v-icon>
                     </v-btn>
                 </template>
                 Edit
             </v-tooltip>
             <v-tooltip top>
-                <template v-slot:activator="{on}">
+                <template v-slot:activator="{ on }">
                     <v-btn
                         icon
                         :disabled="isLoading"
@@ -37,9 +33,7 @@
                         <v-icon :color="version.color_code">fa-circle</v-icon>
                         Color: {{ version.color }}
                     </p>
-                    <p v-if="version.price">
-                        Price: {{ version.price }}
-                    </p>
+                    <p v-if="version.price">Price: {{ version.price }}</p>
                     <p>
                         Active:
                         <v-icon v-if="version.is_active" color="green">
@@ -55,7 +49,7 @@
                         v-if="version.image"
                         class="white"
                         :src="version.image.storage_url"
-                    ></v-img>
+                    />
                 </v-col>
             </v-row>
         </v-card-text>
@@ -65,15 +59,15 @@
             :product="product"
             :version="version"
             @versions-changed="$emit('versions-changed')"
-        ></edit-version-dialog>
+        />
     </v-card>
 </template>
 
 <script>
-import EditVersionDialog from "./EditVersionDialog";
+import EditVersionDialog from './EditVersionDialog';
 
 export default {
-    name: "VersionCard",
+    name: 'VersionCard',
     components: {
         'edit-version-dialog': EditVersionDialog
     },
@@ -81,7 +75,7 @@ export default {
         version: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 product_id: null,
                 display_name: '',
@@ -89,12 +83,12 @@ export default {
                 color_code: null,
                 price: 0,
                 is_active: true
-            }
+            })
         },
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -107,7 +101,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         }
     },
     data() {
@@ -118,30 +112,31 @@ export default {
     },
     methods: {
         confirmDelete() {
-            this.$root.$confirm(
-                'Delete Version',
-                'Do you really want to delete this product version? If it has an image, the image won\'t be deleted.'
-            ).then(confirm => {
-                if (confirm) {
-                    this.delete();
-                }
-            })
+            this.$root
+                .$confirm(
+                    'Delete Version',
+                    "Do you really want to delete this product version? If it has an image, the image won't be deleted."
+                )
+                .then((confirm) => {
+                    if (confirm) {
+                        this.delete();
+                    }
+                });
         },
         delete() {
             this.isLoading = true;
-            this.$http.delete(`/api/version/${this.version.id}`)
-                .then(response => {
+            this.$http
+                .delete(`/api/version/${this.version.id}`)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('versions-changed');
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

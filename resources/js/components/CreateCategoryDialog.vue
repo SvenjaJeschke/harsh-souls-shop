@@ -4,10 +4,7 @@
             <v-card-title>
                 Create Category
                 <v-spacer />
-                <v-btn
-                    icon
-                    @click="close"
-                >
+                <v-btn icon @click="close">
                     <v-icon>fa-times</v-icon>
                 </v-btn>
             </v-card-title>
@@ -19,7 +16,7 @@
                     :error-messages="errorMessages.display_name"
                 />
                 <v-tooltip top>
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                         <v-checkbox
                             v-model="category.is_active"
                             label="Active"
@@ -28,11 +25,12 @@
                             :error-messages="errorMessages.is_active"
                         />
                     </template>
-                    If a category is deactivated, the customers won't be able to see it in the shop.
+                    If a category is deactivated, the customers won't be able to
+                    see it in the shop.
                 </v-tooltip>
             </v-card-text>
             <v-card-actions>
-                <v-spacer></v-spacer>
+                <v-spacer />
                 <v-btn
                     text
                     color="secondary"
@@ -49,7 +47,7 @@
 
 <script>
 export default {
-    name: "CreateCategoryDialog",
+    name: 'CreateCategoryDialog',
     props: {
         value: {
             type: Boolean,
@@ -75,18 +73,19 @@ export default {
         create() {
             this.isLoading = true;
             this.errorMessages = {};
-            this.$http.post('/api/category', this.category)
-                .then(response => {
+            this.$http
+                .post('/api/category', this.category)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('category-created');
                     this.close();
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.errorMessages = error.response.data.errors;
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         },
         close() {
             this.category = {
@@ -97,9 +96,7 @@ export default {
             this.$emit('input', false);
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

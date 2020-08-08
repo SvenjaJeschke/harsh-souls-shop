@@ -6,7 +6,7 @@
         <v-card-subtitle>
             Select the categories you want the product to belong to.
         </v-card-subtitle>
-        <v-divider></v-divider>
+        <v-divider />
         <v-card-text>
             <v-treeview
                 v-if="categories.length"
@@ -18,10 +18,10 @@
                 selectable
                 selection-type="independent"
                 hoverable
-            ></v-treeview>
+            />
         </v-card-text>
         <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn
                 text
                 color="secondary"
@@ -42,7 +42,7 @@ export default {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -55,7 +55,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         }
     },
     data() {
@@ -67,29 +67,29 @@ export default {
     },
     created() {
         this.getCategories();
-        this. selected = this.product.categories.map(item => item.id);
+        this.selected = this.product.categories.map((item) => item.id);
     },
     methods: {
         getCategories() {
-            this.$http.get('/api/categories/all')
-                .then(response => {
-                    this.categories = response.data;
-                })
+            this.$http.get('/api/categories/all').then((response) => {
+                this.categories = response.data;
+            });
         },
         update() {
             this.isLoading = true;
-            this.$http.put(`/api/product/${this.product.id}/categories`, {categories: this.selected})
-                .then(response => {
+            this.$http
+                .put(`/api/product/${this.product.id}/categories`, {
+                    categories: this.selected
+                })
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

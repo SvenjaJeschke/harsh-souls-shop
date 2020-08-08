@@ -4,10 +4,7 @@
             <v-card-title>
                 Select the files you want to upload.
                 <v-spacer />
-                <v-btn
-                    icon
-                    @click="close"
-                >
+                <v-btn icon @click="close">
                     <v-icon>fa-times</v-icon>
                 </v-btn>
             </v-card-title>
@@ -39,7 +36,7 @@
 
 <script>
 export default {
-    name: "UploadDialog",
+    name: 'UploadDialog',
     props: {
         value: {
             type: Boolean,
@@ -49,7 +46,7 @@ export default {
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -62,7 +59,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         }
     },
     data() {
@@ -74,32 +71,31 @@ export default {
     methods: {
         upload() {
             this.isLoading = true;
-            let formData = new FormData;
-            this.images.forEach(image => {
+            let formData = new FormData();
+            this.images.forEach((image) => {
                 formData.append('images[]', image, image.name);
             });
-            this.$http.post(`/api/images/${this.product.id}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/formdata'
-                }
-            })
-                .then(response => {
+            this.$http
+                .post(`/api/images/${this.product.id}`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/formdata'
+                    }
+                })
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('files-changed');
                 })
                 .finally(() => {
                     this.isLoading = false;
                     this.close();
-                })
+                });
         },
         close() {
             this.images = [];
             this.$emit('input', false);
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

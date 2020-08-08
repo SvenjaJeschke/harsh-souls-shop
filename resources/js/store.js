@@ -36,15 +36,17 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        getUser({commit}) {
-            axios.get('/api/user').then(response => {
+        getUser({ commit }) {
+            axios
+                .get('/api/user')
+                .then((response) => {
                     commit('SET_AUTH');
                     commit('SET_USER', response.data);
                 })
-                .catch(error => {
+                .catch((error) => {
                     commit('UNSET_AUTH');
                     commit('UNSET_USER');
-                })
+                });
         }
     }
 });

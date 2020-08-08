@@ -3,11 +3,8 @@
         <v-card v-if="editVersion">
             <v-card-title>
                 Edit: {{ version.display_name }}
-                <v-spacer/>
-                <v-btn
-                    icon
-                    @click="close"
-                >
+                <v-spacer />
+                <v-btn icon @click="close">
                     <v-icon>fa-times</v-icon>
                 </v-btn>
             </v-card-title>
@@ -17,13 +14,13 @@
                     v-model="editVersion.display_name"
                     :error="!!errorMessages.display_name"
                     :error-messages="errorMessages.display_name"
-                ></v-text-field>
+                />
                 <v-text-field
                     label="Color name"
                     v-model="editVersion.color"
                     :error="!!errorMessages.color"
                     :error-messages="errorMessages.color"
-                ></v-text-field>
+                />
                 Select display color:
                 <v-color-picker
                     v-model="editVersion.color_code"
@@ -32,7 +29,7 @@
                     hide-mode-switch
                     hide-inputs
                     mode="hexa"
-                ></v-color-picker>
+                />
                 <v-row>
                     <v-col md="8">
                         <v-text-field
@@ -40,7 +37,7 @@
                             v-model="editVersion.price"
                             :error="!!errorMessages.price"
                             :error-messages="errorMessages.price"
-                        ></v-text-field>
+                        />
                     </v-col>
                     <v-col md="4">
                         <v-checkbox
@@ -48,7 +45,7 @@
                             v-model="editVersion.is_active"
                             :error="!!errorMessages.is_active"
                             :error-messages="errorMessages.is_active"
-                        ></v-checkbox>
+                        />
                     </v-col>
                 </v-row>
                 <v-select
@@ -59,7 +56,7 @@
                     clearable
                     item-value="id"
                     label="Image"
-                    @click:clear="$nextTick(() => image_id = null)"
+                    @click:clear="$nextTick(() => (image_id = null))"
                 >
                     <template v-slot:selection="{ item }">
                         <v-img
@@ -68,7 +65,7 @@
                             contain
                             position="start"
                             :src="item.storage_url"
-                        ></v-img>
+                        />
                         {{ item.original_name }}
                     </template>
                     <template v-slot:item="{ item }">
@@ -78,15 +75,15 @@
                             contain
                             position="start"
                             :src="item.storage_url"
-                        ></v-img>
+                        />
                         {{ item.original_name }}
                     </template>
                 </v-select>
             </v-card-text>
             <v-card-actions>
-                <v-spacer/>
+                <v-spacer />
                 <v-tooltip top>
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                         <v-btn
                             text
                             :disabled="!hasChanges"
@@ -115,12 +112,12 @@
 
 <script>
 export default {
-    name: "EditVersionDialog",
+    name: 'EditVersionDialog',
     props: {
         version: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 product_id: null,
                 display_name: '',
@@ -128,12 +125,12 @@ export default {
                 color_code: null,
                 price: 0,
                 is_active: true
-            }
+            })
         },
         product: {
             type: Object,
             required: true,
-            default: {
+            default: () => ({
                 id: null,
                 display_name: '',
                 description: '',
@@ -146,7 +143,7 @@ export default {
                 categories: [],
                 versions: [],
                 images: []
-            }
+            })
         },
         value: {
             type: Boolean,
@@ -163,12 +160,14 @@ export default {
     },
     computed: {
         hasChanges() {
-            return this.version.image.id !== this.image_id ||
+            return (
+                this.version.image.id !== this.image_id ||
                 this.version.display_name !== this.editVersion.display_name ||
                 this.version.color !== this.editVersion.color ||
                 this.version.color_code !== this.editVersion.color_code ||
                 this.version.price !== this.editVersion.price ||
-                this.version.is_active !== this.editVersion.is_active;
+                this.version.is_active !== this.editVersion.is_active
+            );
         }
     },
     created() {
@@ -186,18 +185,19 @@ export default {
             this.isLoading = true;
             this.editVersion.image_id = this.image_id;
             this.errorMessages = {};
-            this.$http.put(`/api/version/${this.version.id}`, this.editVersion)
-                .then(response => {
+            this.$http
+                .put(`/api/version/${this.version.id}`, this.editVersion)
+                .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.close();
                     this.$emit('versions-changed');
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.errorMessages = error.response.data.errors;
                 })
                 .finally(() => {
                     this.isLoading = false;
-                })
+                });
         },
         revertChanges() {
             this.errorMessages = {};
@@ -205,9 +205,7 @@ export default {
             this.image_id = this.version.image.id;
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
