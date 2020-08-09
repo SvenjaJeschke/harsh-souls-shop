@@ -2,7 +2,8 @@
     <v-tabs
         v-if="tabs.length"
         align-with-title
-        :hide-slider="isNotOnMainCategoryPage"
+        hide-slider
+        mobile-breakpoint="md"
     >
         <v-menu
             tile
@@ -15,8 +16,9 @@
             <template v-slot:activator="{ on }">
                 <v-tab
                     :to="{ name: tab.route, query: tab.query }"
-                    exact
                     v-on="on"
+                    exact
+                    :class="activeClass(tab.category)"
                 >
                     {{ tab.display_name }}
                 </v-tab>
@@ -31,10 +33,9 @@
                     v-for="child in tab.category.children_recursive"
                     :key="child.id"
                     :to="{ name: 'products', query: { category: child.id } }"
-                    active-class="primary--text"
                     exact
                 >
-                    <v-list-item-title>
+                    <v-list-item-title :class="activeClass(child)">
                         {{ child.display_name }}
                     </v-list-item-title>
                 </v-list-item>
@@ -48,7 +49,8 @@ export default {
     name: 'NavigationCategoryTabs',
     data() {
         return {
-            categories: []
+            categories: [],
+            getCategoryAttempts: 0
         };
     },
     computed: {
@@ -65,14 +67,6 @@ export default {
             });
 
             return tabs;
-        },
-        isNotOnMainCategoryPage() {
-            let mainRoutes = ['/home'];
-            this.categories.forEach((category) => {
-                mainRoutes.push('/products/' + category.id);
-            });
-
-            return !mainRoutes.includes(this.$route.fullPath);
         }
     },
     created() {
@@ -80,14 +74,24 @@ export default {
     },
     methods: {
         getCategories() {
+            this.getCategoryAttempts += 1;
             this.$http
                 .get('/api/categories')
                 .then((response) => {
                     this.categories = response.data;
                 })
-                .catch(() => {
-                    this.getCategories();
+                .catch((error) => {
+                    if (this.getCategoryAttempts < 3) {
+                        this.getCategories();
+                    } else {
+                        this.handleServerError(error);
+                    }
                 });
+        },
+        activeClass(category) {
+            if (category.id === this.$route.query.category) {
+                return 'primary--text';
+            }
         }
     }
 };

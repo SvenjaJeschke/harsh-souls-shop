@@ -16,7 +16,7 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'display_name', 'description', 'price', 'is_active'
+        'display_name', 'description', 'price', 'is_active', 'color_code'
     ];
 
     public $timestamps = [
@@ -27,8 +27,11 @@ class Product extends Model
         'display_name' => 'string',
         'description' => 'string',
         'price' => 'decimal:2',
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
+        'color_code' => 'string'
     ];
+
+    protected $appends = ['discount_price'];
 
     /**
      * @return BelongsToMany
@@ -87,10 +90,13 @@ class Product extends Model
     }
 
     /**
-     * @return float|int
+     * @return float|int|null
      */
-    public function calculateDiscountPrice() {
-        return $this->price / 100 * $this->discount->discount_percent;
+    public function getDiscountPriceAttribute() {
+        if ($this->discount) {
+            return $this->price / 100 * $this->discount->discount_percent;
+        }
+        return null;
     }
 
     /**

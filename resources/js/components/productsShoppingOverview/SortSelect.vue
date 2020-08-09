@@ -29,7 +29,14 @@ export default {
             ]
         };
     },
-    mounted() {
+    watch: {
+        value(value) {
+            if (!value) {
+                this.$emit('input', this.sortTypes[0]);
+            }
+        }
+    },
+    created() {
         if (!this.value) {
             this.$emit('input', this.sortTypes[0]);
         }

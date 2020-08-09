@@ -18,6 +18,7 @@
                     <v-text-field
                         v-model="editProduct.price"
                         label="Price"
+                        hint="If product has different version/size prizes, enter smallest value"
                         append-icon="fa-dollar-sign"
                         :error="!!errorMessages.price"
                         :error-messages="errorMessages.price"
@@ -47,6 +48,13 @@
                         :error="!!errorMessages.description"
                         :error-messages="errorMessages.description"
                     />
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col md="12">
+                    Set the products color so people can find it easier. Not
+                    needed when the product has versions.
+                    <color-picker-swatches v-model="editProduct.color_code" />
                 </v-col>
             </v-row>
         </v-card-text>
@@ -79,8 +87,13 @@
 </template>
 
 <script>
+import ColorPickerSwatches from '../ColorPickerSwatches';
+
 export default {
     name: 'ProductDetails',
+    components: {
+        'color-picker-swatches': ColorPickerSwatches
+    },
     props: {
         product: {
             type: Object,
@@ -91,6 +104,7 @@ export default {
                 description: '',
                 price: '',
                 is_active: false,
+                color_code: null,
                 created_at: '',
                 updated_at: '',
                 deleted_at: '',
@@ -114,7 +128,8 @@ export default {
                 this.product.display_name !== this.editProduct.display_name ||
                 this.product.price !== this.editProduct.price ||
                 this.product.is_active !== this.editProduct.is_active ||
-                this.product.description !== this.editProduct.description
+                this.product.description !== this.editProduct.description ||
+                this.product.color_code !== this.editProduct.color_code
             );
         }
     },
@@ -137,7 +152,8 @@ export default {
                 display_name: this.editProduct.display_name,
                 price: this.editProduct.price,
                 is_active: this.editProduct.is_active,
-                description: this.editProduct.description
+                description: this.editProduct.description,
+                color_code: this.editProduct.color_code
             };
             this.isLoading = true;
             this.$http

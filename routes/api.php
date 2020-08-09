@@ -54,3 +54,4 @@ Route::get('/categories', 'CategoryController@index');
 Route::get('/categories/{category}', 'CategoryController@show');
 
 Route::get('/products/max-price', 'ProductController@getMaxPrice');
+Route::get('/products', 'ProductController@indexOverview');

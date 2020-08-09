@@ -15,35 +15,60 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
+                'display_name' => 'Bondage',
+                'parent_id' => null,
+                'is_active' => true
+            ],
+            [
                 'display_name' => 'Toys',
                 'parent_id' => null,
                 'is_active' => true
             ],
             [
-                'display_name' => 'Accessories',
+                'display_name' => 'Lingerie',
                 'parent_id' => null,
                 'is_active' => true
             ],
             [
-                'display_name' => 'Clothing',
+                'display_name' => 'Body Pillows',
                 'parent_id' => null,
                 'is_active' => true
             ],
             [
-                'display_name' => 'Male',
-                'parent_id' => 3,
+                'display_name' => 'Extras',
+                'parent_id' => null,
                 'is_active' => true
             ],
             [
-                'display_name' => 'Female',
-                'parent_id' => 3,
+                'display_name' => 'Dildos',
+                'parent_id' => 2,
                 'is_active' => true
             ],
             [
-                'display_name' => 'Innocent stuff',
-                'parent_id' => 1,
+                'display_name' => 'Vibrators',
+                'parent_id' => 2,
                 'is_active' => true
-            ]
+            ],
+            [
+                'display_name' => 'Partner Toys',
+                'parent_id' => 2,
+                'is_active' => true
+            ],
+            [
+                'display_name' => 'Condoms',
+                'parent_id' => 5,
+                'is_active' => true
+            ],
+            [
+                'display_name' => 'Energy Drinks',
+                'parent_id' => 5,
+                'is_active' => true
+            ],
+            [
+                'display_name' => 'Other',
+                'parent_id' => 5,
+                'is_active' => true
+            ],
         ];
 
         foreach ($categories as $category) {

@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div v-if="show">
         <span class="subtitle-1">Price range</span>
         <v-range-slider
-            v-if="show"
+            :disabled="disabled"
             :value="value"
             :max="maxPrice"
             :min="0"
@@ -12,9 +12,7 @@
             class="align-center mt-12"
             @input="$emit('input', $event)"
         >
-            <template v-slot:thumb-label="{ value }">
-                {{ value }} $
-            </template>
+            <template v-slot:thumb-label="{ value }"> {{ value }} $ </template>
         </v-range-slider>
         <v-row class="px-3">
             0 $
@@ -37,10 +35,17 @@ export default {
     data() {
         return {
             maxPrice: null,
-            show: false
+            show: false,
+            disabled: false
         };
     },
-    created() {
+    watch: {
+        '$route.query.category'() {
+            this.disabled = true;
+            this.getMaxPrice();
+        }
+    },
+    mounted() {
         this.getMaxPrice();
     },
     methods: {
@@ -53,8 +58,14 @@ export default {
                         parseInt(this.value[0]) || 0,
                         parseInt(this.value[1]) || this.maxPrice
                     ]);
+                    this.show = true;
+                    this.disabled = false;
                 })
-                .finally(() => (this.show = true));
+                .catch((error) => {
+                    this.handleServerError(error);
+                    this.$emit('input', [0, 0]);
+                    this.show = false;
+                });
         }
     }
 };

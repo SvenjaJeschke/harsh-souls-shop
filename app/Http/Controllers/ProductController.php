@@ -58,6 +58,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->is_active = $request->is_active;
         $product->description = $request->description;
+        $product->color_code = $request->color_code;
 
         $product->save();
 
@@ -136,5 +137,70 @@ class ProductController extends Controller
     {
         return Product::query()->where('is_active', '=', true)
             ->orderByDesc('price')->first('price');
+    }
+
+    /**
+     * @param Request $request
+     * @return LengthAwarePaginator
+     */
+    public function indexOverview(Request $request): LengthAwarePaginator
+    {
+        $query = Product::with(['images', 'versions', 'discount', 'sizes', 'coverImage'])
+            ->where('is_active', '=', true);
+
+        if ($request->categoryId) {
+            $query->whereHas('categories', static function ($relation) use ($request) {
+                return $relation->where('id', '=', $request->categoryId);
+            });
+        }
+        if ($request->sort) {
+            switch ($request->sort) {
+                case 'newest products':
+                {
+                    $query->latest('created_at');
+                    break;
+                }
+                case 'price descending':
+                {
+                    $query->orderByDesc('price');
+                    break;
+                }
+                case 'price ascending':
+                {
+                    $query->orderBy('price');
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+        }
+
+        if ($request->maxPrice) {
+            $query->whereBetween('price', [$request->minPrice ?: 0, $request->maxPrice]);
+        }
+        if ($request->color) {
+            $query->where('color_code', '=', $request->color);
+        }
+        if ($request->search) {
+            $query->where('display_name', 'LIKE', "%{$request->search}%");
+        }
+
+        // OR WHERE
+
+        if ($request->color) {
+            $query->orWhereHas('versions', static function ($relation) use ($request) {
+                return $relation->where('is_active', '=', true)
+                    ->where('color_code', '=', $request->color);
+            });
+        }
+        if ($request->search) {
+            $query->orWhereHas('keywords', static function ($relation) use ($request) {
+                return $relation->where('name', 'LIKE', "%{$request->search}%");
+            });
+        }
+
+        return $query->paginate(18, '*', 'page', $request->page);
     }
 }

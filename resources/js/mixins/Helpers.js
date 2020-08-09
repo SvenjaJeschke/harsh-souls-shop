@@ -43,6 +43,12 @@ export default {
                     query: obj
                 })
                 .catch(() => {});
+        },
+        handleServerError(error) {
+            this.$root.$emit(
+                'snackbar',
+                'Sorry, there was an internal server error. Please reload the page.'
+            );
         }
     }
 };

@@ -1,6 +1,6 @@
 <template>
     <v-color-picker
-        :value="value || '#ffffff'"
+        :value="value || '#00000000'"
         :error="error"
         :error-messages="errorMessage"
         hide-mode-switch

@@ -1,22 +1,35 @@
 <template>
-    <v-card flat class="mx-6 my-2" color="#121212">
+    <v-card flat class="mx-6 my-2" color="transparent">
         <v-card-title class="pa-0">
             <category-breadcrumbs :category="category" />
         </v-card-title>
         <v-divider />
         <v-card-text>
             <v-row>
-                <v-col md="3">
+                <v-col cols="12" sm="6" md="4" lg="3">
                     <filters-card v-model="params" />
                 </v-col>
-                <v-col md="9">
+                <v-col cols="12" sm="6" md="8" lg="9">
                     <v-row>
-                        <v-col sm="3" md="8" lg="9" />
-                        <v-col sm="9" md="4" lg="3">
+                        <v-col cols="12" lg="5">
+                            <v-pagination
+                                v-model="pagination.page"
+                                :length="pagination.length"
+                            />
+                        </v-col>
+                        <v-col cols="12" md="6" lg="4">
+                            <search-field v-model="params.search" />
+                        </v-col>
+                        <v-col cols="12" md="6" lg="3">
                             <sort-select v-model="params.sort" />
                         </v-col>
                     </v-row>
                     <v-divider />
+                    <products-list
+                        :pagination="pagination"
+                        :params="params"
+                        @loaded-total-pages="pagination.length = $event"
+                    />
                 </v-col>
             </v-row>
         </v-card-text>
@@ -27,13 +40,17 @@
 import CategoryBreadcrumbs from '../components/productsShoppingOverview/CategoryBreadcrumbs';
 import FiltersCard from '../components/productsShoppingOverview/FiltersCard';
 import SortSelect from '../components/productsShoppingOverview/SortSelect';
+import SearchField from '../components/productsShoppingOverview/SearchField';
+import ProductsList from '../components/productsShoppingOverview/ProductsList';
 
 export default {
     name: 'ProductsShoppingOverview',
     components: {
         'category-breadcrumbs': CategoryBreadcrumbs,
         'filters-card': FiltersCard,
-        'sort-select': SortSelect
+        'sort-select': SortSelect,
+        'search-field': SearchField,
+        'products-list': ProductsList
     },
     data() {
         return {
@@ -45,10 +62,14 @@ export default {
                 maxPrice: null,
                 search: null
             },
-            category: null
+            category: null,
+            pagination: {
+                page: 1,
+                length: 1
+            }
         };
     },
-    mounted() {
+    created() {
         this.getQueryParams();
         this.getCategory();
     },
@@ -61,6 +82,9 @@ export default {
         },
         params: {
             handler() {
+                if (this.params.color === '#00000000') {
+                    this.params.color = null;
+                }
                 this.setQueryParams();
             },
             deep: true
@@ -94,11 +118,19 @@ export default {
             });
         },
         getCategory() {
-            this.$http
-                .get(`/api/categories/${this.params.categoryId}`)
-                .then((response) => {
-                    this.category = response.data;
-                });
+            if (this.params.categoryId) {
+                this.$http
+                    .get(`/api/categories/${this.params.categoryId}`)
+                    .then((response) => {
+                        this.category = response.data;
+                    })
+                    .catch((error) => {
+                        this.handleServerError(error);
+                        this.category = null;
+                    });
+            } else {
+                this.category = null;
+            }
         }
     }
 };
