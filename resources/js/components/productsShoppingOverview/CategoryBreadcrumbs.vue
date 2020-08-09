@@ -1,9 +1,11 @@
 <template>
-    <v-breadcrumbs :items="items" class="py-1 px-3">
-        <template v-slot:divider>
-            <v-icon>mdi-chevron-right</v-icon>
-        </template>
-    </v-breadcrumbs>
+    <div>
+        <v-breadcrumbs :items="items" class="py-1 px-3">
+            <template v-slot:divider>
+                <v-icon>mdi-chevron-right</v-icon>
+            </template>
+        </v-breadcrumbs>
+    </div>
 </template>
 
 <script>
@@ -25,6 +27,11 @@ export default {
                     parent_id: null
                 }
             })
+        },
+        product: {
+            type: Object,
+            required: false,
+            default: null
         }
     },
     computed: {
@@ -44,7 +51,15 @@ export default {
                     href: `#/products?category=${this.category.parent_id}`
                 });
             }
-            breadcrumb.push({ text: this.category.display_name });
+            if (this.product) {
+                breadcrumb.push({
+                    text: this.category.display_name,
+                    href: `#/products?category=${this.category.id}`
+                });
+                breadcrumb.push({ text: this.product.display_name });
+            } else {
+                breadcrumb.push({ text: this.category.display_name });
+            }
             return breadcrumb;
         }
     }

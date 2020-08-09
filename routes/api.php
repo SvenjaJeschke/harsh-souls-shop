@@ -55,3 +55,5 @@ Route::get('/categories/{category}', 'CategoryController@show');
 
 Route::get('/products/max-price', 'ProductController@getMaxPrice');
 Route::get('/products', 'ProductController@indexOverview');
+Route::get('/products/{product}', 'ProductController@show');
+Route::get('/products/{product}/cover-image', 'ProductController@getCoverImage');

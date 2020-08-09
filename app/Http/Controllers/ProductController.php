@@ -40,7 +40,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return Product::with(['categories', 'keywords', 'versions.image', 'discount', 'sizes',
+        return Product::with(['categories.parent', 'keywords', 'versions.image', 'discount', 'sizes',
             'images' => static function ($query) {
                 $query->where('is_cover', '=', false);
             }])

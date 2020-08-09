@@ -1,7 +1,7 @@
 <template>
     <v-hover v-slot:default="{ hover }">
         <v-card>
-            <v-img :src="image" lazy-src="./assets/placeholder.png">
+            <v-img :src="image">
                 <v-expand-transition>
                     <v-card
                         flat
@@ -55,7 +55,7 @@ export default {
             } else if (this.product.images.length) {
                 return this.product.images[0].storage_url;
             } else {
-                return null;
+                return './assets/placeholder.png';
             }
         },
         displayPrice() {
