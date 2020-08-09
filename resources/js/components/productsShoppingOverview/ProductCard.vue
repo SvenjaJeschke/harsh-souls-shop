@@ -1,12 +1,29 @@
 <template>
-    <v-card>
-        <v-img :src="image" lazy-src="./assets/placeholder.png" />
-        <v-card-title>
-            {{ product.display_name }}
-            <v-spacer />
-            {{ displayPrice }} $
-        </v-card-title>
-    </v-card>
+    <v-hover v-slot:default="{ hover }">
+        <v-card>
+            <v-img :src="image" lazy-src="./assets/placeholder.png">
+                <v-expand-transition>
+                    <v-card
+                        flat
+                        tile
+                        :to="{ name: 'product', params: { id: product.id } }"
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out primary darken-1 v-card--reveal display-3 subtitle-2"
+                        style="height: 10%;"
+                    >
+                        SHOW PRODUCT
+                    </v-card>
+                </v-expand-transition>
+            </v-img>
+            <v-card-title style="position: relative;">
+                <v-btn absolute color="primary" fab large right top>
+                    <v-icon>mdi-cart</v-icon>
+                </v-btn>
+                {{ product.display_name }}
+            </v-card-title>
+            <v-card-subtitle> {{ displayPrice }} $ </v-card-subtitle>
+        </v-card>
+    </v-hover>
 </template>
 
 <script>
@@ -53,8 +70,27 @@ export default {
             }
             return 0;
         }
+    },
+    methods: {
+        cardStyle(hover) {
+            if (!hover) {
+                return;
+            }
+            return {
+                cursor: 'pointer'
+            };
+        }
     }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-card--reveal {
+    align-items: center;
+    bottom: 0;
+    justify-content: center;
+    opacity: 0.5;
+    position: absolute;
+    width: 100%;
+}
+</style>

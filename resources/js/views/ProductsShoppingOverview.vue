@@ -30,6 +30,11 @@
                         :params="params"
                         @loaded-total-pages="pagination.length = $event"
                     />
+                    <v-divider />
+                    <v-pagination
+                        v-model="pagination.page"
+                        :length="pagination.length"
+                    />
                 </v-col>
             </v-row>
         </v-card-text>

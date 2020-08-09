@@ -9,8 +9,7 @@
                 :key="product.id"
                 lg="4"
                 md="6"
-                sm="12"
-                cols="6"
+                cols="12"
             >
                 <product-card :product="product" />
             </v-col>

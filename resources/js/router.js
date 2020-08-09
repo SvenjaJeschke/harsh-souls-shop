@@ -50,6 +50,13 @@ const routes = [
         component: () => import('./views/admin/EditProduct'),
         description: 'page with all product details and edit functionality',
         props: true
+    },
+    {
+        name: 'product',
+        path: '/product/:id',
+        component: () => import('./views/ProductShoppingDetails'),
+        description: 'product detail page with order options',
+        props: true
     }
 ];
 
