@@ -8,7 +8,7 @@
                         tile
                         :to="{ name: 'product', params: { id: product.id } }"
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out primary darken-1 v-card--reveal display-3 subtitle-2"
+                        class="d-flex transition-fast-in-fast-out primary v-card--reveal display-3 subtitle-2"
                         style="height: 10%;"
                     >
                         SHOW PRODUCT
@@ -89,7 +89,7 @@ export default {
     align-items: center;
     bottom: 0;
     justify-content: center;
-    opacity: 0.5;
+    opacity: 0.75;
     position: absolute;
     width: 100%;
 }

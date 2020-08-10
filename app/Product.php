@@ -31,8 +31,6 @@ class Product extends Model
         'color_code' => 'string'
     ];
 
-    protected $appends = ['discount_price'];
-
     /**
      * @return BelongsToMany
      */
@@ -87,16 +85,6 @@ class Product extends Model
     public function sizes(): HasMany
     {
         return $this->hasMany(Size::class);
-    }
-
-    /**
-     * @return float|int|null
-     */
-    public function getDiscountPriceAttribute() {
-        if ($this->discount) {
-            return $this->price / 100 * $this->discount->discount_percent;
-        }
-        return null;
     }
 
     /**

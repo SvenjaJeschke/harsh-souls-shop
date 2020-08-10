@@ -13,7 +13,8 @@ const options = {
             dark: {
                 primary: '#D32F2F',
                 secondary: '#EC407A',
-                error: '#FFC107'
+                error: '#FFC107',
+                highlight: '#4e4e4e'
             }
         }
     },

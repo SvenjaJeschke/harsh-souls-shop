@@ -1,5 +1,10 @@
 <template>
-    <v-card :max-width="isCoverImage ? 800 : null" class="mx-auto" light>
+    <v-card
+        :max-width="isCoverImage ? 800 : null"
+        class="mx-auto"
+        light
+        color="highlight"
+    >
         <v-img :src="image.storage_url" lazy-src="./assets/placeholder.png">
             <v-card-title>
                 {{ image.original_name }}
