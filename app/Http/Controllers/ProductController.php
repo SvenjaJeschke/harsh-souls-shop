@@ -201,6 +201,6 @@ class ProductController extends Controller
             });
         }
 
-        return $query->paginate(18, '*', 'page', $request->page);
+        return $query->paginate($request->limit ?: 18, '*', 'page', $request->page);
     }
 }

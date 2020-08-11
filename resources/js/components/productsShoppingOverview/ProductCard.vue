@@ -16,9 +16,6 @@
                 </v-expand-transition>
             </v-img>
             <v-card-title style="position: relative;">
-                <v-btn absolute color="primary" fab large right top>
-                    <v-icon>mdi-cart</v-icon>
-                </v-btn>
                 {{ product.display_name }}
             </v-card-title>
             <v-card-subtitle> {{ displayPrice }} $ </v-card-subtitle>

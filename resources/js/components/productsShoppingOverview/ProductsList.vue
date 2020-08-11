@@ -7,8 +7,9 @@
             <v-col
                 v-for="product in products"
                 :key="product.id"
-                lg="4"
-                md="6"
+                :lg="fullWidth ? 3 : 4"
+                :md="fullWidth ? 4 : 6"
+                :sm="fullWidth ? 6 : 12"
                 cols="12"
             >
                 <product-card :product="product" />
@@ -32,7 +33,8 @@ export default {
             required: true,
             default: () => ({
                 page: 1,
-                length: 1
+                length: 1,
+                limit: null
             })
         },
         params: {
@@ -46,6 +48,11 @@ export default {
                 maxPrice: null,
                 search: null
             })
+        },
+        fullWidth: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     },
     data() {

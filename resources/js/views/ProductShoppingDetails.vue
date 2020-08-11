@@ -1,6 +1,6 @@
 <template>
     <v-card v-if="!isLoading" flat class="mx-6 my-2" color="transparent">
-        <v-card-text class="pa-0">
+        <v-card-title class="pa-0">
             <v-row
                 v-for="category in subCategories.length
                     ? subCategories
@@ -9,7 +9,7 @@
             >
                 <category-breadcrumbs :category="category" :product="product" />
             </v-row>
-        </v-card-text>
+        </v-card-title>
         <v-divider />
         <v-card-text class="px-16">
             <v-row>
@@ -60,7 +60,28 @@
                             <span v-else> {{ price }} $ </span>
                         </v-card-title>
                         <v-divider />
-                        <v-card-text>
+                        <v-card-text style="min-height: 250px;">
+                            <v-card
+                                v-if="product.keywords.length"
+                                flat
+                                class="mb-4"
+                            >
+                                <span class="ma-2">
+                                    Keywords:
+                                </span>
+                                <v-chip
+                                    outlined
+                                    class="mx-1"
+                                    v-for="keyword in product.keywords"
+                                    :key="keyword.id"
+                                    :to="{
+                                        name: 'products',
+                                        query: { search: keyword.name }
+                                    }"
+                                >
+                                    {{ keyword.name }}
+                                </v-chip>
+                            </v-card>
                             {{ product.description }}
                             <v-row>
                                 <v-col lg="5" md="6" cols="12">
@@ -103,22 +124,9 @@
                                     />
                                 </v-col>
                                 <v-col lg="2" cols="12">
-                                    <v-text-field
-                                        ref="amountInput"
-                                        label="Amount"
-                                        v-model="selection.amount"
-                                        type="number"
-                                    />
                                 </v-col>
                             </v-row>
                         </v-card-text>
-                        <v-card-actions>
-                            <v-spacer />
-                            <v-btn @click="confirmAddToCard" color="primary">
-                                <v-icon left>mdi-cart</v-icon>
-                                Add to cart
-                            </v-btn>
-                        </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
@@ -161,6 +169,7 @@ export default {
                 discount: null,
                 sizes: [],
                 categories: [],
+                keywords: [],
                 coverImage: null
             },
             isLoading: false,

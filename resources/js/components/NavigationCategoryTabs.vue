@@ -89,7 +89,10 @@ export default {
                 });
         },
         activeClass(category) {
-            if (category.id === this.$route.query.category) {
+            if (!category.id && this.$route.name === 'home') {
+                return 'primary--text';
+            }
+            if (category.id && category.id === this.$route.query.category) {
                 return 'primary--text';
             }
         }
