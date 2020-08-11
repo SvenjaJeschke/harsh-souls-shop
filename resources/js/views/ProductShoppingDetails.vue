@@ -63,13 +63,9 @@
                         <v-card-text>
                             {{ product.description }}
                             <v-row>
-                                <v-col
-                                    lg="5"
-                                    md="6"
-                                    cols="12"
-                                    v-if="product.versions.length"
-                                >
+                                <v-col lg="5" md="6" cols="12">
                                     <v-select
+                                        v-if="product.versions.length"
                                         label="Versions"
                                         v-model="selection.version"
                                         :items="product.versions"
@@ -96,13 +92,9 @@
                                         </template>
                                     </v-select>
                                 </v-col>
-                                <v-col
-                                    lg="5"
-                                    md="6"
-                                    cols="12"
-                                    v-if="product.sizes.length"
-                                >
+                                <v-col lg="5" md="6" cols="12">
                                     <v-select
+                                        v-if="product.sizes.length"
                                         label="Sizes"
                                         v-model="selection.size"
                                         :items="product.sizes"
