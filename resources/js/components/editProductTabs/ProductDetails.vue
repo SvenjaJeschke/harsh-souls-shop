@@ -6,7 +6,7 @@
         <v-divider />
         <v-card-text>
             <v-row>
-                <v-col md="8">
+                <v-col md="8" cols="12">
                     <v-text-field
                         v-model="editProduct.display_name"
                         label="Name"
@@ -14,7 +14,7 @@
                         :error-messages="errorMessages.display_name"
                     />
                 </v-col>
-                <v-col md="3">
+                <v-col md="3" cols="12">
                     <v-text-field
                         v-model="editProduct.price"
                         label="Price"
@@ -24,7 +24,7 @@
                         :error-messages="errorMessages.price"
                     />
                 </v-col>
-                <v-col md="1">
+                <v-col md="1" cols="12">
                     <v-tooltip top>
                         <template v-slot:activator="{ on }">
                             <v-checkbox
@@ -41,7 +41,7 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col md="12">
+                <v-col cols="12">
                     <v-textarea
                         v-model="editProduct.description"
                         label="Description"
@@ -51,7 +51,7 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col md="12">
+                <v-col cols="12">
                     Set the products color so people can find it easier. Not
                     needed when the product has versions.
                     <color-picker-swatches v-model="editProduct.color_code" />

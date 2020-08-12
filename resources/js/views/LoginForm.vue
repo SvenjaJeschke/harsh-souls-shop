@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import {debounce} from "lodash";
 
 export default {
     name: 'LoginForm',
@@ -51,14 +51,6 @@ export default {
             errors: []
         };
     },
-    computed: {
-        ...mapGetters(['checkAuth'])
-    },
-    mounted() {
-        if (this.checkAuth) {
-            this.$router.push({ name: 'home' });
-        }
-    },
     methods: {
         login() {
             this.isLoading = true;
@@ -69,9 +61,8 @@ export default {
                         Accept: 'application/json'
                     }
                 })
-                .then((response) => {
-                    this.$store.dispatch('getUser');
-                    this.$root.$emit('snackbar', response.data.message);
+                .then(() => {
+                    //todo
                     location.reload();
                 })
                 .catch((error) => {

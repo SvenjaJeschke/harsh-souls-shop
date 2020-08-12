@@ -20,7 +20,6 @@
                 </v-list-item-content>
             </v-list-item>
             <v-divider />
-
             <v-list-item
                 v-for="(item, index) in items"
                 :key="index"
@@ -34,12 +33,23 @@
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+            <v-divider />
+            <v-list-item @click="logout">
+                <v-list-item-icon>
+                    <v-icon small>fa-sign-out-alt</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                    <v-list-item-title>Logout</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
         </v-list>
     </v-navigation-drawer>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import { debounce } from 'lodash';
 
 export default {
     name: 'AdminNavigationDrawer',
@@ -66,6 +76,11 @@ export default {
                     title: 'Orders',
                     icon: 'fa-tasks',
                     route: 'orders'
+                },
+                {
+                    title: 'Users',
+                    icon: 'fa-user',
+                    route: 'user-management'
                 }
             ];
         }
@@ -74,6 +89,15 @@ export default {
         this.$root.$on('toggle-admin-navigation-drawer', () => {
             this.show = !this.show;
         });
+    },
+    methods: {
+        logout() {
+            this.$http.post('/logout').then(() => {
+                this.$store.dispatch('getUser');
+                this.reload();
+            });
+        },
+        reload: debounce(() => location.reload(), 500)
     }
 };
 </script>

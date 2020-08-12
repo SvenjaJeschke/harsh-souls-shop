@@ -6,6 +6,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Image;
 use App\Product;
+use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -202,5 +203,16 @@ class ProductController extends Controller
         }
 
         return $query->paginate($request->limit ?: 18, '*', 'page', $request->page);
+    }
+
+    /**
+     * @param Product $product
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function destroy(Product $product): JsonResponse
+    {
+        $product->delete();
+        return response()->json(['message' => 'Product was deleted.']);
     }
 }

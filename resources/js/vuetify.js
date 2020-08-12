@@ -12,7 +12,7 @@ const options = {
         themes: {
             dark: {
                 primary: '#D32F2F',
-                secondary: '#EC407A',
+                secondary: '#fc2d73',
                 error: '#FFC107',
                 highlight: '#4e4e4e'
             }

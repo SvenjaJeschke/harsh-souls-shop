@@ -1,5 +1,5 @@
 <template>
-    <div>Discount</div>
+    <div>WIP</div>
 </template>
 
 <script>

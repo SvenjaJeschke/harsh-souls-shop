@@ -31,7 +31,14 @@ export default {
                     }
                 });
         },
-        deleteProduct() {}
+        deleteProduct() {
+            this.$http
+                .delete(`/api/admin/products/${this.productId}`)
+                .then((response) => {
+                    this.$root.$emit('snackbar', response.data.message);
+                    this.$emit('deleted');
+                });
+        }
     }
 };
 </script>

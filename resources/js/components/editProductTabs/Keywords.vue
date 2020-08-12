@@ -11,14 +11,14 @@
         <v-card-text>
             <v-card flat class="mx-auto" max-width="800">
                 <v-row>
-                    <v-col md="10">
+                    <v-col cols="12" sm="10">
                         <v-text-field
                             v-model="newKeyword"
                             label="Type new keyword"
                             hide-details
                         />
                     </v-col>
-                    <v-col md="2">
+                    <v-col cols="12" sm="2">
                         <v-btn
                             color="primary"
                             :disabled="!valid || isLoading"

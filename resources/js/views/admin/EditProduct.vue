@@ -7,7 +7,7 @@
             </v-btn>
             #{{ product.id }} {{ product.display_name }}
             <v-spacer />
-            <v-tabs v-model="activeTab" right>
+            <v-tabs v-model="activeTab" right mobile-breakpoint="md">
                 <v-tab v-for="tab in tabs" :key="tab.key" :to="`#${tab.key}`">
                     <v-icon left>{{ tab.icon }}</v-icon>
                     {{ tab.title }}

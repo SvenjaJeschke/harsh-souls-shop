@@ -10,7 +10,7 @@
             </v-card-title>
             <v-card-text>
                 <v-row>
-                    <v-col md="7">
+                    <v-col cols="12" md="7">
                         <v-text-field
                             v-model="product.display_name"
                             label="Name"
@@ -18,7 +18,7 @@
                             :error-messages="errorMessages.display_name"
                         />
                     </v-col>
-                    <v-col md="3">
+                    <v-col cols="8" md="3">
                         <v-text-field
                             v-model="product.price"
                             label="Price"
@@ -27,7 +27,7 @@
                             :error-messages="errorMessages.price"
                         />
                     </v-col>
-                    <v-col md="2">
+                    <v-col cols="4" md="2">
                         <v-tooltip top>
                             <template v-slot:activator="{ on }">
                                 <v-checkbox

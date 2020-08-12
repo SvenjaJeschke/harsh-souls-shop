@@ -57,7 +57,10 @@
                 </template>
                 <template v-slot:item.actions="{ item }">
                     <edit-product-button :product-id="item.id" />
-                    <delete-product-button :product-id="item.id" />
+                    <delete-product-button
+                        :product-id="item.id"
+                        @deleted="getProducts"
+                    />
                 </template>
             </v-data-table>
         </v-card-text>

@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'admin'], static functio
     Route::get('/products', 'ProductController@index');
     Route::get('/product/{product}', 'ProductController@show');
     Route::put('/product/{product}', 'ProductController@update');
+    Route::delete('/products/{product}', 'ProductController@destroy');
     Route::post('/product', 'ProductController@store');
     Route::get('/product/{product}/cover-image', 'ProductController@getCoverImage');
     Route::put('/product/cover-image/{image}', 'ProductController@setCoverImage');
@@ -48,6 +49,12 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'admin'], static functio
 
     Route::get('/sizes/{product}', 'SizeController@index');
     Route::post('/size', 'SizeController@store');
+
+    Route::get('/users', 'UserController@index');
+    Route::post('/users', 'UserController@store');
+    Route::delete('/users/{user}', 'UserController@destroy');
+    Route::put('/users/{user}', 'UserController@update');
+    Route::put('/auth-user/password', 'UserController@updatePassword');
 });
 
 Route::get('/categories', 'CategoryController@index');

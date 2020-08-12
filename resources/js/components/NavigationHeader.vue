@@ -1,5 +1,10 @@
 <template>
-    <v-app-bar app shrink-on-scroll src="./assets/logo.png" color="black">
+    <v-app-bar
+        app
+        shrink-on-scroll
+        src="./assets/logo_larger.png"
+        color="black"
+    >
         <v-spacer />
         <v-text-field
             v-if="$route.name !== 'products'"

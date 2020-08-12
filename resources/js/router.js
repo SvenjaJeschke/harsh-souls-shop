@@ -46,6 +46,15 @@ const routes = [
         }
     },
     {
+        name: 'user-management',
+        path: '/admin/user-management',
+        component: () => import('./views/admin/UserManagement'),
+        description: 'overview and management of all users',
+        meta: {
+            auth: true
+        }
+    },
+    {
         name: 'orders',
         path: '/admin/orders',
         component: () => import('./views/admin/Orders'),
@@ -79,6 +88,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.auth && !store.state.auth) {
+        next({ name: 'home' });
+    } else if (to.name === 'login' && store.state.auth) {
         next({ name: 'home' });
     } else {
         next();
