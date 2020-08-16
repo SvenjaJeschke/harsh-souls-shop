@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'admin'], static functio
     Route::delete('/category/{category}', 'CategoryController@destroy');
 
     Route::get('/sizes/{product}', 'SizeController@index');
+    Route::delete('/sizes/{size}', 'SizeController@destroy');
     Route::post('/size', 'SizeController@store');
 
     Route::get('/users', 'UserController@index');

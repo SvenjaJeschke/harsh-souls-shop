@@ -11,7 +11,10 @@
         <v-card-text>
             <v-row>
                 <v-col v-for="size in product.sizes" :key="size.id" md="4">
-                    <size-card :size="size" />
+                    <size-card
+                        :size="size"
+                        @sizes-changed="$emit('sizes-changed')"
+                    />
                 </v-col>
             </v-row>
         </v-card-text>
