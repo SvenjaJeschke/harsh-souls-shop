@@ -25,6 +25,9 @@ export default {
         'confirm-modal': ConfirmModal,
         'confirm-age-alert': ConfirmAgeAlert
     },
+    created() {
+        this.$store.dispatch('getUser');
+    },
     mounted() {
         this.$root.$confirm = this.$refs.confirm.open;
     }

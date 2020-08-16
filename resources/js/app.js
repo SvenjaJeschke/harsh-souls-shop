@@ -19,20 +19,14 @@ Vue.prototype.$http = axios;
 
 Vue.mixin(Helpers);
 
-let app;
-
-store.dispatch('getUser').finally(() => mountApp());
-
-function mountApp() {
-    app = new Vue({
-        el: '#app',
-        router,
-        vuetify,
-        store,
-        components: {
-            app: App
-        }
-    });
-}
+const app = new Vue({
+    el: '#app',
+    router,
+    vuetify,
+    store,
+    components: {
+        app: App
+    }
+});
 
 export default app;
