@@ -42,6 +42,6 @@ class SizeController extends Controller
     public function destroy(Size $size): JsonResponse
     {
         $size->delete();
-        return response()->json(['message' => 'Size was created.']);
+        return response()->json(['message' => 'Size was deleted.']);
     }
 }

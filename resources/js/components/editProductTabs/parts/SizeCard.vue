@@ -2,11 +2,11 @@
     <v-card>
         <v-card-text>
             <v-row>
-                <v-col cols="12" md="8">
+                <v-col cols="12" md="10">
                     Size: {{ size.display_name }}<br />
                     Price: {{ size.price }} $
                 </v-col>
-                <v-col cols="12" md="4">
+                <v-col cols="12" md="2">
                     <!-- edit modal -->
                     <v-tooltip top>
                         <template v-slot:activator="{ on }">

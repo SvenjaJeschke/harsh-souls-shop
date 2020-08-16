@@ -10,7 +10,13 @@
         <v-divider />
         <v-card-text>
             <v-row>
-                <v-col v-for="size in product.sizes" :key="size.id" md="4">
+                <v-col
+                    v-for="size in product.sizes"
+                    :key="size.id"
+                    cols="12"
+                    md="6"
+                    lg="4"
+                >
                     <size-card
                         :size="size"
                         @sizes-changed="$emit('sizes-changed')"
