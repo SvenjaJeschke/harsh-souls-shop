@@ -3,14 +3,11 @@
         <v-card-title>
             {{ version.display_name }}
             <v-spacer />
-            <v-tooltip top>
-                <template v-slot:activator="{ on }">
-                    <v-btn icon v-on="on" @click="showEditModal = true">
-                        <v-icon>fa-pen</v-icon>
-                    </v-btn>
-                </template>
-                Edit
-            </v-tooltip>
+            <edit-version-dialog
+                :product="product"
+                :version="version"
+                @versions-changed="$emit('versions-changed')"
+            />
             <v-tooltip top>
                 <template v-slot:activator="{ on }">
                     <v-btn
@@ -53,13 +50,6 @@
                 </v-col>
             </v-row>
         </v-card-text>
-        <edit-version-dialog
-            v-if="showEditModal"
-            v-model="showEditModal"
-            :product="product"
-            :version="version"
-            @versions-changed="$emit('versions-changed')"
-        />
     </v-card>
 </template>
 
@@ -82,7 +72,10 @@ export default {
                 color: null,
                 color_code: null,
                 price: 0,
-                is_active: true
+                is_active: true,
+                image: {
+                    id: null
+                }
             })
         },
         product: {
@@ -106,8 +99,7 @@ export default {
     },
     data() {
         return {
-            isLoading: false,
-            showEditModal: false
+            isLoading: false
         };
     },
     methods: {

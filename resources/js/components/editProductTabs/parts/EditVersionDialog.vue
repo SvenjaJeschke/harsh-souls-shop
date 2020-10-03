@@ -1,5 +1,15 @@
 <template>
-    <v-dialog :value="value" persistent max-width="600">
+    <v-dialog v-model="showDialog" persistent max-width="600">
+        <template #activator="{ on: dialog }">
+            <v-tooltip top>
+                <template v-slot:activator="{ on: tooltip }">
+                    <v-btn icon v-on="{ ...dialog, ...tooltip }">
+                        <v-icon>fa-pen</v-icon>
+                    </v-btn>
+                </template>
+                Edit
+            </v-tooltip>
+        </template>
         <v-card v-if="editVersion">
             <v-card-title>
                 Edit: {{ version.display_name }}
@@ -53,9 +63,13 @@
                     clearable
                     item-value="id"
                     label="Image"
-                    @click:clear="$nextTick(() => (image_id = null))"
+                    @click:clear="
+                        $nextTick(function () {
+                            this.image_id = null;
+                        })
+                    "
                 >
-                    <template v-slot:selection="{ item }">
+                    <template #selection="{ item }">
                         <v-img
                             height="50"
                             width="100"
@@ -65,7 +79,7 @@
                         />
                         {{ item.original_name }}
                     </template>
-                    <template v-slot:item="{ item }">
+                    <template #item="{ item }">
                         <v-img
                             height="50"
                             width="100"
@@ -80,7 +94,7 @@
             <v-card-actions>
                 <v-spacer />
                 <v-tooltip top>
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                         <v-btn
                             text
                             :disabled="!hasChanges"
@@ -109,6 +123,7 @@
 
 <script>
 import ColorPickerSwatches from '../../ColorPickerSwatches';
+import { cloneDeep } from 'lodash';
 
 export default {
     name: 'EditVersionDialog',
@@ -126,7 +141,10 @@ export default {
                 color: null,
                 color_code: null,
                 price: 0,
-                is_active: true
+                is_active: true,
+                image: {
+                    id: null
+                }
             })
         },
         product: {
@@ -146,10 +164,6 @@ export default {
                 versions: [],
                 images: []
             })
-        },
-        value: {
-            type: Boolean,
-            default: false
         }
     },
     data() {
@@ -157,12 +171,14 @@ export default {
             editVersion: null,
             isLoading: false,
             image_id: null,
-            errorMessages: {}
+            errorMessages: {},
+            showDialog: false
         };
     },
     computed: {
         hasChanges() {
             return (
+                !this.version.image ||
                 this.version.image.id !== this.image_id ||
                 this.version.display_name !== this.editVersion.display_name ||
                 this.version.color !== this.editVersion.color ||
@@ -173,15 +189,15 @@ export default {
         }
     },
     created() {
-        this.editVersion = this.copy(this.version);
-        this.image_id = this.version.image.id;
+        this.editVersion = cloneDeep(this.version);
+        this.image_id = this.version.image ? this.version.image.id : null;
     },
     methods: {
         close() {
-            this.editVersion = this.copy(this.version);
-            this.image_id = this.version.image.id;
+            this.editVersion = cloneDeep(this.version);
+            this.image_id = this.version.image ? this.version.image.id : null;
             this.errorMessages = {};
-            this.$emit('input', false);
+            this.showDialog = false;
         },
         update() {
             this.isLoading = true;
@@ -203,11 +219,9 @@ export default {
         },
         revertChanges() {
             this.errorMessages = {};
-            this.editVersion = this.copy(this.version);
-            this.image_id = this.version.image.id;
+            this.editVersion = cloneDeep(this.version);
+            this.image_id = this.version.image ? this.version.image.id : null;
         }
     }
 };
 </script>
-
-<style scoped></style>
