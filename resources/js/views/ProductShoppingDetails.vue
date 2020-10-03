@@ -84,9 +84,13 @@
                             </v-card>
                             {{ product.description }}
                             <v-row>
-                                <v-col lg="5" md="6" cols="12">
+                                <v-col
+                                    v-if="product.versions.length"
+                                    lg="5"
+                                    md="6"
+                                    cols="12"
+                                >
                                     <v-select
-                                        v-if="product.versions.length"
                                         label="Versions"
                                         v-model="selection.version"
                                         :items="product.versions"
@@ -113,9 +117,13 @@
                                         </template>
                                     </v-select>
                                 </v-col>
-                                <v-col lg="5" md="6" cols="12">
+                                <v-col
+                                    v-if="product.sizes.length"
+                                    lg="5"
+                                    md="6"
+                                    cols="12"
+                                >
                                     <v-select
-                                        v-if="product.sizes.length"
                                         label="Sizes"
                                         v-model="selection.size"
                                         :items="product.sizes"
@@ -123,13 +131,7 @@
                                         item-text="display_name"
                                     />
                                 </v-col>
-                                <v-col lg="2" cols="12">
-                                    <v-select
-                                        label="Amount"
-                                        :items="numbers"
-                                        v-model.number="selection.amount"
-                                    />
-                                </v-col>
+                                <v-col lg="2" cols="12" />
                             </v-row>
                         </v-card-text>
                     </v-card>
