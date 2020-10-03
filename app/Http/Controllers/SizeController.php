@@ -28,7 +28,9 @@ class SizeController extends Controller
         Size::create([
             'display_name' => $request->display_name,
             'price' => $this->calculatePrice($product, $request),
-            'product_id' => $request->product_id
+            'product_id' => $request->product_id,
+            'operator' => $request->operator,
+            'price_adjustment' => $request->price_adjustment
         ]);
 
         return response()->json(['message' => 'Size was created.']);

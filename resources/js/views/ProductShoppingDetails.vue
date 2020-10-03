@@ -123,8 +123,7 @@
                                         item-text="display_name"
                                     />
                                 </v-col>
-                                <v-col lg="2" cols="12">
-                                </v-col>
+                                <v-col lg="2" cols="12" />
                             </v-row>
                         </v-card-text>
                     </v-card>
@@ -203,15 +202,37 @@ export default {
             return (this.price / this.product.discount.discount_percent) * 100;
         },
         price() {
-            let price = this.product.price;
+            if (!this.selection.version && !this.selection.size) return;
+            let price = parseFloat(this.product.price);
             if (
                 this.selection.version &&
-                parseInt(this.selection.version.price)
+                this.selection.version.operator &&
+                this.selection.version.price_adjustment
             ) {
-                price = this.selection.version.price;
+                const versionPriceAdjustment = parseFloat(
+                    this.selection.version.price_adjustment
+                );
+                if (this.selection.version.operator === '+') {
+                    price += versionPriceAdjustment;
+                }
+                if (this.selection.version.operator === '-') {
+                    price -= versionPriceAdjustment;
+                }
             }
-            if (this.selection.size && parseInt(this.selection.size.price)) {
-                price = this.selection.size.price;
+            if (
+                this.selection.size &&
+                this.selection.size.operator &&
+                this.selection.size.price_adjustment
+            ) {
+                const sizePriceAdjustment = parseFloat(
+                    this.selection.size.price_adjustment
+                );
+                if (this.selection.size.operator === '+') {
+                    price += sizePriceAdjustment;
+                }
+                if (this.selection.size.operator === '-') {
+                    price -= sizePriceAdjustment;
+                }
             }
             return (price * this.selection.amount).toFixed(2);
         }
