@@ -9,6 +9,9 @@ export default {
             s.color = string;
             return s.color !== '';
         },
+        hasWhiteSpace(string) {
+            return /\s/g.test(string);
+        },
         addQueryParams(params) {
             history.pushState(
                 {},

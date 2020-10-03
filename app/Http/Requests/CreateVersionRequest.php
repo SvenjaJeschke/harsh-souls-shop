@@ -11,7 +11,7 @@ class CreateVersionRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,15 +21,17 @@ class CreateVersionRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'display_name' => 'required|string|min:3|max:150',
             'color' => 'nullable|string|min:3|max:150',
             'color_code' => 'nullable|string|min:7|max:9',
-            'price' => 'nullable',
+            //'price' => 'nullable',
             'is_active' => 'required|boolean',
-            'image_id' => 'nullable|numeric'
+            'image_id' => 'nullable|numeric',
+            'operator' => 'nullable|string',
+            'price_adjustment' => 'nullable|numeric'
         ];
     }
 }

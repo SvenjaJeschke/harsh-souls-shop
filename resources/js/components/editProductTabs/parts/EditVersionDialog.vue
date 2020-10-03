@@ -39,11 +39,24 @@
                 />
                 <v-row>
                     <v-col md="8">
-                        <v-text-field
+                        <!--<v-text-field
                             label="Price"
                             v-model="editVersion.price"
                             :error="!!errorMessages.price"
                             :error-messages="errorMessages.price"
+                        />-->
+                        <v-text-field
+                            label="Price"
+                            v-model="priceInput"
+                            :error="
+                                !!errorMessages.price_adjustment ||
+                                !!errorMessages.operator
+                            "
+                            :error-messages="
+                                errorMessages.price_adjustment ||
+                                errorMessages.operator
+                            "
+                            hint="write + or - and the price to change from the products base price"
                         />
                     </v-col>
                     <v-col md="4">
@@ -140,11 +153,12 @@ export default {
                 display_name: '',
                 color: null,
                 color_code: null,
-                price: 0,
                 is_active: true,
                 image: {
                     id: null
-                }
+                },
+                price_adjustment: null,
+                operator: null
             })
         },
         product: {
@@ -172,7 +186,8 @@ export default {
             isLoading: false,
             image_id: null,
             errorMessages: {},
-            showDialog: false
+            showDialog: false,
+            priceInput: null
         };
     },
     computed: {
@@ -183,14 +198,44 @@ export default {
                 this.version.display_name !== this.editVersion.display_name ||
                 this.version.color !== this.editVersion.color ||
                 this.version.color_code !== this.editVersion.color_code ||
-                this.version.price !== this.editVersion.price ||
+                this.version.price_adjustment !==
+                    this.editVersion.price_adjustment ||
+                this.version.operator !== this.editVersion.operator ||
                 this.version.is_active !== this.editVersion.is_active
             );
+        }
+    },
+    watch: {
+        priceInput(value) {
+            this.errorMessages.price_adjustment = null;
+            if (!value || !value.length) {
+                this.resetPriceFields();
+                return;
+            }
+            if (this.hasWhiteSpace(value)) {
+                this.errorMessages.price_adjustment = 'contains spaces';
+                this.resetPriceFields();
+                return;
+            }
+            if (!['+', '-'].includes(value.charAt(0))) {
+                this.errorMessages.price_adjustment = 'must begin with + or -';
+                this.resetPriceFields();
+                return;
+            }
+            this.editVersion.operator = value.charAt(0);
+            if (value.length > 1) {
+                this.editVersion.price_adjustment = value.substring(
+                    1,
+                    value.length
+                );
+            }
         }
     },
     created() {
         this.editVersion = cloneDeep(this.version);
         this.image_id = this.version.image ? this.version.image.id : null;
+        this.priceInput =
+            this.editVersion.operator + this.editVersion.price_adjustment;
     },
     methods: {
         close() {
@@ -221,6 +266,10 @@ export default {
             this.errorMessages = {};
             this.editVersion = cloneDeep(this.version);
             this.image_id = this.version.image ? this.version.image.id : null;
+        },
+        resetPriceFields() {
+            this.editVersion.operator = null;
+            this.editVersion.price_adjustment = null;
         }
     }
 };

@@ -18,7 +18,6 @@
                     <v-text-field
                         v-model="editProduct.price"
                         label="Price"
-                        hint="If product has different version/size prizes, enter smallest value"
                         append-icon="fa-dollar-sign"
                         :error="!!errorMessages.price"
                         :error-messages="errorMessages.price"

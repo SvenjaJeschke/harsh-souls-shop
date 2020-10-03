@@ -29,11 +29,24 @@
                 />
                 <v-row>
                     <v-col md="8">
-                        <v-text-field
+                        <!--<v-text-field
                             label="Price"
                             v-model="version.price"
                             :error="!!errorMessages.price"
                             :error-messages="errorMessages.price"
+                        />-->
+                        <v-text-field
+                            label="Price"
+                            v-model="priceInput"
+                            :error="
+                                !!errorMessages.price_adjustment ||
+                                !!errorMessages.operator
+                            "
+                            :error-messages="
+                                errorMessages.price_adjustment ||
+                                errorMessages.operator
+                            "
+                            hint="write + or - and the price to change from the products base price"
                         />
                     </v-col>
                     <v-col md="4">
@@ -132,13 +145,41 @@ export default {
                 display_name: '',
                 color: null,
                 color_code: '#ffffff',
-                price: 0,
                 is_active: true,
-                image_id: null
+                image_id: null,
+                price_adjustment: null,
+                operator: null
             },
             isLoading: false,
-            errorMessages: {}
+            errorMessages: {},
+            priceInput: null
         };
+    },
+    watch: {
+        priceInput(value) {
+            this.errorMessages.price_adjustment = null;
+            if (!value || !value.length) {
+                this.resetPriceFields();
+                return;
+            }
+            if (this.hasWhiteSpace(value)) {
+                this.errorMessages.price_adjustment = 'contains spaces';
+                this.resetPriceFields();
+                return;
+            }
+            if (!['+', '-'].includes(value.charAt(0))) {
+                this.errorMessages.price_adjustment = 'must begin with + or -';
+                this.resetPriceFields();
+                return;
+            }
+            this.version.operator = value.charAt(0);
+            if (value.length > 1) {
+                this.version.price_adjustment = value.substring(
+                    1,
+                    value.length
+                );
+            }
+        }
     },
     methods: {
         close() {
@@ -148,8 +189,11 @@ export default {
                 color: null,
                 color_code: '#ffffff',
                 price: 0,
-                is_active: true
+                is_active: true,
+                price_adjustment: null,
+                operator: null
             };
+            this.priceInput = null;
             this.errorMessages = {};
             this.$emit('input', false);
         },
@@ -172,6 +216,10 @@ export default {
                 .finally(() => {
                     this.isLoading = false;
                 });
+        },
+        resetPriceFields() {
+            this.version.operator = null;
+            this.version.price_adjustment = null;
         }
     }
 };

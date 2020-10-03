@@ -33,8 +33,10 @@ class VersionController extends Controller
             'display_name' => $request->display_name,
             'color' => $request->color,
             'color_code' => $request->color_code,
-            'price' => $request->price,
-            'is_active' => $request->is_active
+            'price' => $this->calculatePrice($product, $request),
+            'is_active' => $request->is_active,
+            'operator' => $request->operator,
+            'price_adjustment' => $request->price_adjustment
         ]);
 
         if ($request->image_id) {
@@ -68,8 +70,10 @@ class VersionController extends Controller
         $version->display_name = $request->display_name;
         $version->color = $request->color;
         $version->color_code = $request->color_code;
-        $version->price = $request->price;
+        $version->price = $this->calculatePrice($version->product, $request);
         $version->is_active = $request->is_active;
+        $version->operator = $request->operator;
+        $version->price_adjustment = $request->price_adjustment;
         $version->save();
 
         if ($request->image_id) {
@@ -92,5 +96,24 @@ class VersionController extends Controller
         }
 
         return response()->json(['message' => 'Version was updated.']);
+    }
+
+    /**
+     * @param Product $product
+     * @param Request $request
+     * @return mixed
+     */
+    protected function calculatePrice(Product $product, Request $request)
+    {
+        $price = $product->price;
+        if ($request->operator && $request->price_adjustment) {
+            if ($request->operator === '+') {
+                $price+= $request->price_adjustment;
+            }
+            if ($request->operator === '-') {
+                $price-= $request->price_adjustment;
+            }
+        }
+        return $price;
     }
 }

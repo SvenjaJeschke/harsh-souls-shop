@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateVersionRequest extends FormRequest
 {
@@ -27,9 +28,15 @@ class UpdateVersionRequest extends FormRequest
             'display_name' => 'required|string|min:3|max:150',
             'color' => 'nullable|string|min:3|max:150',
             'color_code' => 'nullable|string|min:7|max:9',
-            'price' => 'nullable',
+            //'price' => 'nullable',
             'is_active' => 'required|boolean',
-            'image_id' => 'nullable|numeric'
+            'image_id' => 'nullable|numeric',
+            'operator' => [
+                'nullable',
+                'string',
+                Rule::in(['+', '-'])
+            ],
+            'price_adjustment' => 'nullable|numeric'
         ];
     }
 }
