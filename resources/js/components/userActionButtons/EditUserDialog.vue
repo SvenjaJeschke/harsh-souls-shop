@@ -108,6 +108,9 @@ export default {
         },
         show(value) {
             this.$emit('input', value);
+        },
+        user(value) {
+            this.editUser = this.copy(value);
         }
     },
     methods: {
