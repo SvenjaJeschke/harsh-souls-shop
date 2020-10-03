@@ -13,32 +13,11 @@
         <v-divider />
         <v-card-text class="px-16">
             <v-row>
-                <v-col md="4" sm="6" cols="12">
-                    <v-card>
-                        <v-carousel v-model="activeImage" hide-delimiters>
-                            <v-carousel-item
-                                v-for="image in images"
-                                :key="image.id"
-                            >
-                                <v-img :src="image.storage_url" />
-                            </v-carousel-item>
-                        </v-carousel>
-                    </v-card>
-                    <v-row>
-                        <v-col
-                            cols="4"
-                            v-for="(image, index) in images"
-                            :key="index"
-                        >
-                            <v-card
-                                @click="activeImage = index"
-                                :color="activeImageClass(index)"
-                            >
-                                <v-img :src="image.storage_url" />
-                            </v-card>
-                        </v-col>
-                    </v-row>
-                </v-col>
+                <product-images
+                    :product="product"
+                    @active-image-changed="onActiveImageChanged"
+                    :selected-version="selection.version"
+                />
                 <v-col md="8" sm="6" cols="12">
                     <v-card>
                         <v-card-title>
@@ -61,27 +40,7 @@
                         </v-card-title>
                         <v-divider />
                         <v-card-text style="min-height: 250px;">
-                            <v-card
-                                v-if="product.keywords.length"
-                                flat
-                                class="mb-4"
-                            >
-                                <span class="ma-2">
-                                    Keywords:
-                                </span>
-                                <v-chip
-                                    outlined
-                                    class="mx-1"
-                                    v-for="keyword in product.keywords"
-                                    :key="keyword.id"
-                                    :to="{
-                                        name: 'products',
-                                        query: { search: keyword.name }
-                                    }"
-                                >
-                                    {{ keyword.name }}
-                                </v-chip>
-                            </v-card>
+                            <product-keywords :keywords="product.keywords" />
                             {{ product.description }}
                             <v-row>
                                 <v-col
@@ -90,32 +49,10 @@
                                     md="6"
                                     cols="12"
                                 >
-                                    <v-select
-                                        label="Versions"
+                                    <product-version-select
                                         v-model="selection.version"
-                                        :items="product.versions"
-                                        return-object
-                                        item-text="display_name"
-                                    >
-                                        <template v-slot:selection="{ item }">
-                                            <v-icon
-                                                left
-                                                :color="item.color_code"
-                                            >
-                                                fa-circle
-                                            </v-icon>
-                                            {{ item.display_name }}
-                                        </template>
-                                        <template v-slot:item="{ item }">
-                                            <v-icon
-                                                left
-                                                :color="item.color_code"
-                                            >
-                                                fa-circle
-                                            </v-icon>
-                                            {{ item.display_name }}
-                                        </template>
-                                    </v-select>
+                                        :versions="product.versions"
+                                    />
                                 </v-col>
                                 <v-col
                                     v-if="product.sizes.length"
@@ -149,13 +86,21 @@
 <script>
 import CategoryBreadcrumbs from '../components/productsShoppingOverview/CategoryBreadcrumbs';
 import ConfirmAddProductToCartModal from '../components/ConfirmAddProductToCartModal';
+import ProductImages from '../components/productShoppingDetails/ProductImages';
+import ProductKeywords from '../components/productShoppingDetails/ProductKeywords';
+import ProductVersionSelect from '../components/productShoppingDetails/ProductVersionSelect';
+import CalculatePrice from '../mixins/CalculatePrice';
 
 export default {
     name: 'ProductShoppingDetails',
     components: {
+        'product-version-select': ProductVersionSelect,
+        'product-keywords': ProductKeywords,
+        'product-images': ProductImages,
         'category-breadcrumbs': CategoryBreadcrumbs,
         'confirm-add-product-to-cart-modal': ConfirmAddProductToCartModal
     },
+    mixins: [CalculatePrice],
     props: {
         id: {
             type: [String, Number],
@@ -180,7 +125,6 @@ export default {
                 coverImage: null
             },
             isLoading: false,
-            activeImage: null,
             selection: {
                 product: null,
                 version: null,
@@ -199,85 +143,14 @@ export default {
         mainCategories() {
             return this.product.categories.filter((item) => !item.parent_id);
         },
-        images() {
-            if (this.product.coverImage) {
-                return [this.product.coverImage, ...this.product.images];
-            }
-            return [...this.product.images];
-        },
         discountPrice() {
             if (!this.product.discount) return;
             return (this.price / this.product.discount.discount_percent) * 100;
-        },
-        price() {
-            if (!this.selection.version && !this.selection.size) return;
-            let price = parseFloat(this.product.price);
-            if (
-                this.selection.version &&
-                this.selection.version.operator &&
-                this.selection.version.price_adjustment
-            ) {
-                const versionPriceAdjustment = parseFloat(
-                    this.selection.version.price_adjustment
-                );
-                if (this.selection.version.operator === '+') {
-                    price += versionPriceAdjustment;
-                }
-                if (this.selection.version.operator === '-') {
-                    price -= versionPriceAdjustment;
-                }
-            }
-            if (
-                this.selection.size &&
-                this.selection.size.operator &&
-                this.selection.size.price_adjustment
-            ) {
-                const sizePriceAdjustment = parseFloat(
-                    this.selection.size.price_adjustment
-                );
-                if (this.selection.size.operator === '+') {
-                    price += sizePriceAdjustment;
-                }
-                if (this.selection.size.operator === '-') {
-                    price -= sizePriceAdjustment;
-                }
-            }
-            return (price * this.selection.amount).toFixed(2);
-        },
-        numbers() {
-            let list = [];
-            for (let i = 1; i <= 100; i++) {
-                list.push(i);
-            }
-            return list;
         }
     },
     watch: {
         id() {
             this.getProduct();
-        },
-        'selection.version': {
-            handler(version) {
-                if (
-                    version.image &&
-                    this.product.images[this.activeImage].id !==
-                        version.image.id
-                ) {
-                    this.product.images.forEach((image, index) => {
-                        if (image.id === version.image.id) {
-                            this.activeImage = index;
-                        }
-                    });
-                }
-            },
-            deep: true
-        },
-        activeImage(imageIndex) {
-            this.product.versions.forEach((version) => {
-                if (version.image.id === this.product.images[imageIndex].id) {
-                    this.selection.version = version;
-                }
-            });
         },
         'selection.amount'(value) {
             if (value <= 0) {
@@ -292,7 +165,6 @@ export default {
     },
     created() {
         this.getProduct();
-        this.activeImage = this.images[0];
     },
     methods: {
         getProduct() {
@@ -318,16 +190,12 @@ export default {
                 .catch(this.handleServerError)
                 .finally(() => (this.isLoading = false));
         },
-        activeImageClass(index) {
-            if (this.activeImage !== index) {
-                return;
-            }
-            return 'highlight';
-        },
-        confirmAddToCard() {
-            this.selection.price = this.price;
-            this.selection.discountPrice = this.discountPrice;
-            this.showConfirmModal = true;
+        onActiveImageChanged(imageIndex) {
+            this.product.versions.forEach((version) => {
+                if (version.image.id === this.product.images[imageIndex].id) {
+                    this.selection.version = version;
+                }
+            });
         }
     }
 };
