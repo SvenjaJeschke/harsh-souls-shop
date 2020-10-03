@@ -13,9 +13,13 @@
 export default {
     name: 'DeleteUserButton',
     props: {
-        userId: {
-            type: Number,
-            required: true
+        user: {
+            type: Object,
+            required: true,
+            default: () => ({
+                id: null,
+                username: null
+            })
         }
     },
     methods: {
@@ -23,7 +27,7 @@ export default {
             this.$root
                 .$confirm(
                     'Delete user',
-                    'Do you really want to delete this user?'
+                    `Do you really want to delete the user ${this.user.username}?`
                 )
                 .then((confirm) => {
                     if (confirm) {
@@ -33,7 +37,7 @@ export default {
         },
         deleteUser() {
             this.$http
-                .delete(`/api/admin/users/${this.userId}`)
+                .delete(`/api/admin/users/${this.user.id}`)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('deleted');

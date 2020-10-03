@@ -30,10 +30,7 @@
                         :user="item"
                         @updated="getUsers"
                     />
-                    <delete-user-button
-                        :user-id="item.id"
-                        @deleted="getUsers"
-                    />
+                    <delete-user-button :user="item" @deleted="getUsers" />
                     <change-user-password-dialog :current-user="item" />
                 </template>
             </v-data-table>
