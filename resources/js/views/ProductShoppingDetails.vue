@@ -123,7 +123,13 @@
                                         item-text="display_name"
                                     />
                                 </v-col>
-                                <v-col lg="2" cols="12" />
+                                <v-col lg="2" cols="12">
+                                    <v-select
+                                        label="Amount"
+                                        :items="numbers"
+                                        v-model.number="selection.amount"
+                                    />
+                                </v-col>
                             </v-row>
                         </v-card-text>
                     </v-card>
@@ -235,6 +241,13 @@ export default {
                 }
             }
             return (price * this.selection.amount).toFixed(2);
+        },
+        numbers() {
+            let list = [];
+            for (let i = 1; i <= 100; i++) {
+                list.push(i);
+            }
+            return list;
         }
     },
     watch: {

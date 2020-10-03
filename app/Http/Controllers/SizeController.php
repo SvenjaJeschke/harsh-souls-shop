@@ -20,6 +20,7 @@ class SizeController extends Controller
     }
 
     /**
+     * @param Product $product
      * @param CreateSizeRequest $request
      * @return JsonResponse
      */
