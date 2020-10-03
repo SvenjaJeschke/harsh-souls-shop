@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'admin'], static functio
 
     Route::get('/sizes/{product}', 'SizeController@index');
     Route::delete('/sizes/{size}', 'SizeController@destroy');
-    Route::post('/size', 'SizeController@store');
+    Route::post('/size/{product}', 'SizeController@store');
 
     Route::get('/users', 'UserController@index');
     Route::post('/users', 'UserController@store');

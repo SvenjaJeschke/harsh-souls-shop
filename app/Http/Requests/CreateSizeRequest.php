@@ -25,8 +25,10 @@ class CreateSizeRequest extends FormRequest
     {
         return [
             'display_name' => 'required|string',
-            'price' => 'nullable|numeric',
-            'product_id' => 'nullable|numeric|exists:products,id'
+            //'price' => 'nullable|numeric',
+            'product_id' => 'nullable|numeric|exists:products,id',
+            'operator' => 'nullable|string',
+            'price_adjustment' => 'nullable|numeric'
         ];
     }
 }

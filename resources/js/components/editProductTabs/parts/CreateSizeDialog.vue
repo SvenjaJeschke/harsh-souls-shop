@@ -13,10 +13,23 @@
                     label="Size display name"
                     v-model="size.display_name"
                 />
-                <v-text-field
+                <!--<v-text-field
                     label="Price"
                     append-icon="fa-dollar-sign"
                     v-model="size.price"
+                />-->
+                <v-text-field
+                    label="Price"
+                    append-icon="fa-dollar-sign"
+                    v-model="priceInput"
+                    :error="
+                        !!errorMessages.price_adjustment ||
+                        !!errorMessages.operator
+                    "
+                    :error-messages="
+                        errorMessages.price_adjustment || errorMessages.operator
+                    "
+                    hint="write + or - and the price to change from the products base price"
                 />
             </v-card-text>
             <v-card-actions>
@@ -67,18 +80,43 @@ export default {
         return {
             size: {
                 display_name: null,
-                price: 0.0,
-                product_id: this.product.id
+                product_id: this.product.id,
+                price_adjustment: null,
+                operator: null
             },
             isLoading: false,
-            errorMessages: {}
+            errorMessages: {},
+            priceInput: null
         };
+    },
+    watch: {
+        priceInput(value) {
+            this.errorMessages.price_adjustment = null;
+            if (!value || !value.length) {
+                this.resetPriceFields();
+                return;
+            }
+            if (this.hasWhiteSpace(value)) {
+                this.errorMessages.price_adjustment = 'contains spaces';
+                this.resetPriceFields();
+                return;
+            }
+            if (!['+', '-'].includes(value.charAt(0))) {
+                this.errorMessages.price_adjustment = 'must begin with + or -';
+                this.resetPriceFields();
+                return;
+            }
+            this.size.operator = value.charAt(0);
+            if (value.length > 1) {
+                this.size.price_adjustment = value.substring(1, value.length);
+            }
+        }
     },
     methods: {
         create() {
             this.isLoading = true;
             this.$http
-                .post('/api/admin/size', this.size)
+                .post(`/api/admin/size/${this.product.id}`, this.size)
                 .then((response) => {
                     this.$root.$emit('snackbar', response.data.message);
                     this.$emit('size-created');
@@ -95,11 +133,16 @@ export default {
         close() {
             this.size = {
                 display_name: null,
-                price: 0.0,
-                product_id: this.product.id
+                product_id: this.product.id,
+                price_adjustment: null,
+                operator: null
             };
             this.errorMessages = {};
             this.$emit('input', false);
+        },
+        resetPriceFields() {
+            this.version.operator = null;
+            this.version.price_adjustment = null;
         }
     }
 };

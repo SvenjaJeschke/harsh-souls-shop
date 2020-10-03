@@ -268,8 +268,8 @@ export default {
             this.image_id = this.version.image ? this.version.image.id : null;
         },
         resetPriceFields() {
-            this.editVersion.operator = null;
-            this.editVersion.price_adjustment = null;
+            this.editVersion.operator = this.version.operator;
+            this.editVersion.price_adjustment = this.version.price_adjustment;
         }
     }
 };

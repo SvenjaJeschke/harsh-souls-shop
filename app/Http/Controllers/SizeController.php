@@ -23,11 +23,11 @@ class SizeController extends Controller
      * @param CreateSizeRequest $request
      * @return JsonResponse
      */
-    public function store(CreateSizeRequest $request): JsonResponse
+    public function store(Product $product, CreateSizeRequest $request): JsonResponse
     {
         Size::create([
             'display_name' => $request->display_name,
-            'price' => $request->price,
+            'price' => $this->calculatePrice($product, $request),
             'product_id' => $request->product_id
         ]);
 
@@ -43,5 +43,19 @@ class SizeController extends Controller
     {
         $size->delete();
         return response()->json(['message' => 'Size was deleted.']);
+    }
+
+    protected function calculatePrice(Product $product, Request $request)
+    {
+        $price = $product->price;
+        if ($request->operator && $request->price_adjustment) {
+            if ($request->operator === '+') {
+                $price+= $request->price_adjustment;
+            }
+            if ($request->operator === '-') {
+                $price-= $request->price_adjustment;
+            }
+        }
+        return $price;
     }
 }

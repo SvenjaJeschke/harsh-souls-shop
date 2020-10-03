@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Size extends Model
 {
     protected $fillable = [
-        'display_name', 'price', 'product_id'
+        'display_name', 'price', 'product_id', 'operator', 'price_adjustment'
     ];
 
     public $timestamps = [
@@ -18,7 +18,9 @@ class Size extends Model
     protected $casts = [
         'display_name' => 'string',
         'price' => 'decimal:2',
-        'product_id' => 'integer'
+        'product_id' => 'integer',
+        'operator' => 'string',
+        'price_adjustment' => 'decimal:2'
     ];
 
     /**
