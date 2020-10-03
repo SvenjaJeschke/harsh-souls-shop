@@ -69,10 +69,6 @@
 export default {
     name: 'EditUserButton',
     props: {
-        value: {
-            type: Boolean,
-            default: false
-        },
         user: {
             type: Object,
             required: true,
@@ -103,12 +99,6 @@ export default {
         this.editUser = this.copy(this.user);
     },
     watch: {
-        value(value) {
-            this.show = value;
-        },
-        show(value) {
-            this.$emit('input', value);
-        },
         user(value) {
             this.editUser = this.copy(value);
         }

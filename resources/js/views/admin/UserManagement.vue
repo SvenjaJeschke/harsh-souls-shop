@@ -21,12 +21,11 @@
                     itemsPerPageOptions: [10, 20, 50, 100, 200]
                 }"
             >
-                <template v-slot:item.created_at="{ item }">
+                <template #item.created_at="{ item }">
                     {{ formatDate(item.created_at) }}
                 </template>
-                <template v-slot:item.actions="{ item }">
+                <template #item.actions="{ item }">
                     <edit-user-dialog
-                        v-model="showEditUserDialog"
                         :user="item"
                         @updated="getUsers"
                     />
@@ -73,8 +72,7 @@ export default {
             pagination: {},
             isLoading: false,
             totalUsers: 0,
-            showCreateUserDialog: false,
-            showEditUserDialog: false
+            showCreateUserDialog: false
         };
     },
     watch: {
